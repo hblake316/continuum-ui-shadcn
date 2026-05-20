@@ -1,0 +1,88 @@
+import type { Meta, StoryObj } from '@storybook/react'
+import { MdInbox, MdOutlineSearchOff } from 'react-icons/md'
+
+import { Button } from './button'
+import { Card, CardContent } from './card'
+import { EmptyState } from './empty-state'
+
+const meta: Meta<typeof EmptyState> = {
+  title: 'Components/EmptyState',
+  component: EmptyState,
+  tags: ['autodocs'],
+  argTypes: {
+    title: { control: 'text' },
+    description: { control: 'text' },
+  },
+}
+
+export default meta
+type Story = StoryObj<typeof EmptyState>
+
+export const Default: Story = {
+  args: {
+    title: 'No activity yet',
+  },
+}
+
+export const WithIcon: Story = {
+  args: {
+    title: 'No audit events',
+  },
+  render: (args) => <EmptyState {...args} icon={<MdInbox size={24} />} />,
+}
+
+export const WithDescription: Story = {
+  args: {
+    title: 'No audit events',
+    description: 'Audit events will appear here once enabled.',
+  },
+}
+
+export const WithAction: Story = {
+  args: {
+    title: 'No audit events',
+    description: 'Audit events will appear here once enabled.',
+  },
+  render: (args) => (
+    <EmptyState
+      {...args}
+      action={
+        <Button variant="contained" color="action" size="sm">
+          Configure
+        </Button>
+      }
+    />
+  ),
+}
+
+export const Full: Story = {
+  args: {
+    title: 'No matching results',
+    description: 'Try a different search or clear your filters.',
+  },
+  render: (args) => (
+    <EmptyState
+      {...args}
+      icon={<MdOutlineSearchOff size={24} />}
+      action={
+        <Button variant="outlined" color="action" size="sm">
+          Clear filters
+        </Button>
+      }
+    />
+  ),
+}
+
+export const WidgetEmpty: Story = {
+  render: () => (
+    <Card className="w-96">
+      <CardContent>
+        <EmptyState
+          icon={<MdInbox size={24} />}
+          title="No environments yet"
+          description="Connect your first environment to see its health here."
+        />
+      </CardContent>
+    </Card>
+  ),
+}
