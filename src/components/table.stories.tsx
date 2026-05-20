@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { StatusIndicator, type StatusTone } from './status-indicator'
 import {
@@ -16,6 +16,17 @@ const meta: Meta<typeof Table> = {
   title: 'Components/Table',
   component: Table,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Semantic table primitives. Compose \`TableHeader\`, \`TableBody\`, \`TableFooter\`, and \`TableRow\`/\`TableHead\`/\`TableCell\`. Provides hover and divider styling out of the box; add Tailwind utilities for striped or responsive layouts.`,
+      },
+    },
+  },
 }
 
 export default meta

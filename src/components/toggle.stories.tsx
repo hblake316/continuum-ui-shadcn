@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Toggle } from './toggle'
 
@@ -7,6 +7,17 @@ const meta: Meta<typeof Toggle> = {
   title: 'Forms/Toggle',
   component: Toggle,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Momentary toggle button (formatting toolbar, view-mode button). For boolean settings prefer \`Switch\`; for mutually-exclusive groups use \`SegmentedControl\`. Controlled via \`pressed\` + \`onPressedChange\`.`,
+      },
+    },
+  },
   argTypes: {
     size: { control: 'radio', options: ['md', 'sm'] },
     disabled: { control: 'boolean' },

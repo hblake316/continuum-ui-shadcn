@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { CircularProgress } from './progress'
 
@@ -6,6 +6,17 @@ const meta: Meta<typeof CircularProgress> = {
   title: 'Components/Progress/Circular',
   component: CircularProgress,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Circular progress indicator. Use for short determinate operations or inline loading states. For full-page or top-of-section indeterminate loading use \`LinearProgress\`.`,
+      },
+    },
+  },
   argTypes: {
     value: { control: { type: 'range', min: 0, max: 100, step: 1 } },
     color: { control: 'radio', options: ['primary', 'secondary'] },

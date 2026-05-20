@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Avatar } from './avatar'
 
@@ -6,6 +6,20 @@ const meta: Meta<typeof Avatar> = {
   title: 'Components/Avatar',
   component: Avatar,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `User identity tile rendered as initials, image, or icon. Optional \`badge\` slot in the bottom-right for presence/status.
+
+- **variant**: \`circular\` for people · \`square\`/\`rounded\` for resources or brand marks.
+- **size**: \`sm\` (24px) for inline rows · \`md\` (32px) default · \`lg\` (40px) for profile headers.`,
+      },
+    },
+  },
   argTypes: {
     variant: { control: 'radio', options: ['circular', 'square', 'rounded'] },
     size: { control: 'radio', options: ['lg', 'md', 'sm'] },

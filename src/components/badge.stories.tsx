@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { MdNotificationsNone } from 'react-icons/md'
 
 import { Badge } from './badge'
@@ -8,6 +8,19 @@ const meta: Meta<typeof Badge> = {
   title: 'Components/Badge',
   component: Badge,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Small count or dot decoration positioned on a child element (e.g. notification count on an icon button). For inline status text use \`StatusIndicator\`; for standalone tags use \`Chip\`; for presence dots without a child use \`StatusDot\`.
+
+- **variant**: \`standard\` (pill with count) · \`dot\` (small circle, no number).`,
+      },
+    },
+  },
   argTypes: {
     variant: { control: 'radio', options: ['standard', 'dot'] },
     color: {

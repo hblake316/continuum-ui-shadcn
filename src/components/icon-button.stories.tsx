@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { MdAdd, MdDeleteOutline, MdEdit, MdMoreVert } from 'react-icons/md'
 
 import { IconButton } from './icon-button'
@@ -7,6 +7,19 @@ const meta: Meta<typeof IconButton> = {
   title: 'Components/IconButton',
   component: IconButton,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Square icon-only button. Same \`variant\`/\`color\`/\`size\` system as \`Button\`. Use for toolbar actions, table-row affordances, and dense UI. Pair with \`Tooltip\` for accessible labels.
+
+- **size**: \`xs\` (16px) for inside text · \`sm\` (26px) for dense tables · \`md\` (32px) default · \`lg\` (38px) for primary toolbar actions.`,
+      },
+    },
+  },
   argTypes: {
     variant: { control: 'radio', options: ['contained', 'outlined', 'text'] },
     color: {

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { AppLayout, AppSidebar, AppMain, AppHeader, AppBody } from './app-layout'
 
@@ -6,7 +6,18 @@ const meta: Meta<typeof AppLayout> = {
   title: 'Layout/AppLayout',
   component: AppLayout,
   tags: ['autodocs'],
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    layout: 'fullscreen',
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Top-level page shell. Wraps \`AppSidebar\` (220px / 60px collapsed) and \`AppMain\` (which contains \`AppHeader\` and \`AppBody\`). Use once per route; for the inner sidebar contents compose with the \`Sidebar*\` primitives.`,
+      },
+    },
+  },
 }
 
 export default meta

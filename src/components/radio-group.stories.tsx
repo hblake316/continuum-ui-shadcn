@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { RadioGroup, RadioGroupItem } from './radio-group'
 
@@ -7,6 +7,17 @@ const meta: Meta<typeof RadioGroup> = {
   title: 'Forms/RadioGroup',
   component: RadioGroup,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Mutually-exclusive selection from a small set of options. For 2-way switches use \`Switch\`; for many independent boolean options use \`Checkbox\`; for one-of-many from longer lists use \`Select\` or \`SegmentedControl\`.`,
+      },
+    },
+  },
   argTypes: {
     label: { control: 'text' },
     error: { control: 'text' },

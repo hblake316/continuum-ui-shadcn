@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { MdHistory, MdSchedule, MdSettings } from 'react-icons/md'
 
 import { Tab, TabList, TabPanel } from './tabs'
@@ -8,6 +8,17 @@ const meta: Meta<typeof TabList> = {
   title: 'Navigation/Tabs',
   component: TabList,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `In-page horizontal navigation between sibling views. For top-level app routes use the sidebar; for short binary mode toggles use \`SegmentedControl\`. \`TabPanel\` renders conditionally based on which \`Tab\` is \`selected\`.`,
+      },
+    },
+  },
 }
 
 export default meta

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { MdHourglassEmpty, MdReportProblem } from 'react-icons/md'
 
 import { StatusIndicator } from './status-indicator'
@@ -7,6 +7,20 @@ const meta: Meta<typeof StatusIndicator> = {
   title: 'Components/StatusIndicator',
   component: StatusIndicator,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Icon + label pair for status in table cells, headers, or detail views. For just the colored dot use \`StatusDot\`; for a banner with description use \`Alert\`.
+
+- **tone**: \`success\` · \`warning\` · \`error\` · \`info\` · \`neutral\`. Each tone has a default icon; pass \`icon\` to override.
+- Set \`showIcon={false}\` for label-only status text.`,
+      },
+    },
+  },
   argTypes: {
     tone: {
       control: 'radio',

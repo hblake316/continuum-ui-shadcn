@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Skeleton } from './skeleton'
 
@@ -7,6 +7,10 @@ const meta: Meta<typeof Skeleton> = {
   component: Skeleton,
   tags: ['autodocs'],
   parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
     docs: {
       description: {
         component:

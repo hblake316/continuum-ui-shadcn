@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Breadcrumbs, BreadcrumbLink, BreadcrumbCurrent } from './breadcrumbs'
 
@@ -6,6 +6,17 @@ const meta: Meta<typeof Breadcrumbs> = {
   title: 'Navigation/Breadcrumbs',
   component: Breadcrumbs,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Hierarchical navigation trail. Wrap navigable links in \`BreadcrumbLink\` and the active page in \`BreadcrumbCurrent\` (rendered as a filled pill).`,
+      },
+    },
+  },
 }
 
 export default meta

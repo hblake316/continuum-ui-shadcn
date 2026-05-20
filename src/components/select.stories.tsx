@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Select } from './select'
 
@@ -7,6 +7,19 @@ const meta: Meta<typeof Select> = {
   title: 'Forms/Select',
   component: Select,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Single-select dropdown for short closed enumeration lists. For large or async lists with type-ahead use \`Autocomplete\`; for picking multiple use \`MultiSelect\`.
+
+- **size**: \`md\` (40px) inside forms · \`sm\` (32px) for inline filters and table toolbars.`,
+      },
+    },
+  },
   argTypes: {
     size: { control: 'radio', options: ['md', 'sm'] },
     required: { control: 'boolean' },

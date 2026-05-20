@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { SplitButton } from './split-button'
 
@@ -6,6 +6,19 @@ const meta: Meta<typeof SplitButton> = {
   title: 'Components/SplitButton',
   component: SplitButton,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Button with a separate dropdown trigger for related secondary actions (e.g. "Save" + "Save as draft"). Use only when the dropdown items are variations of the main action; otherwise pair \`Button\` with a standalone menu.
+
+- Same \`variant\`/\`color\`/\`size\` system as \`Button\`; provide \`onClickMain\` and \`onClickDropdown\` separately.`,
+      },
+    },
+  },
   argTypes: {
     variant: { control: 'radio', options: ['contained', 'outlined'] },
     color: {

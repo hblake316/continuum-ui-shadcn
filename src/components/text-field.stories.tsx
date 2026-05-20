@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { TextField } from './text-field'
 
@@ -6,6 +6,19 @@ const meta: Meta<typeof TextField> = {
   title: 'Forms/TextField',
   component: TextField,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Single-line text input with label, optional hint, and error state. For multi-line use a textarea; for closed-list values use \`Select\` or \`Autocomplete\`.
+
+- **size**: \`sm\` (32px) for inline filters · \`md\` (40px) default forms · \`lg\` (60px) for splash/onboarding.`,
+      },
+    },
+  },
   argTypes: {
     size: { control: 'radio', options: ['lg', 'md', 'sm'] },
     required: { control: 'boolean' },

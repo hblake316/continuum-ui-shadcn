@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { StatusDot } from './status-dot'
 
@@ -6,6 +6,20 @@ const meta: Meta<typeof StatusDot> = {
   title: 'Components/StatusDot',
   component: StatusDot,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Tiny presence/state dot (online/offline/error/etc). Use beside text or avatars. For status with an inline label use \`StatusIndicator\`; for counts on another element use \`Badge\`.
+
+- **status**: \`online\` · \`offline\` · \`degraded\` · \`success\` · \`error\` · \`warning\` · \`info\`.
+- Set \`pulse\` for live/active states.`,
+      },
+    },
+  },
   argTypes: {
     status: {
       control: 'radio',

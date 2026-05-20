@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { MdMoreVert } from 'react-icons/md'
 
 import { Avatar } from './avatar'
@@ -10,6 +10,17 @@ const meta: Meta<typeof Card> = {
   title: 'Components/Card',
   component: Card,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Container for grouped content. Compose \`CardHeader\`, \`CardContent\`, and \`CardFooter\` as needed; \`stroke\` adds a border for stronger separation. Use \`dense\` on \`CardHeader\` for compact list layouts.`,
+      },
+    },
+  },
   argTypes: {
     stroke: { control: 'boolean' },
   },

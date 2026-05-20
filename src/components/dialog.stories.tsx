@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { userEvent, within } from '@storybook/test'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { userEvent, within } from 'storybook/test'
 
 import { Button } from './button'
 import {
@@ -17,6 +17,10 @@ const meta: Meta<typeof DialogContent> = {
   component: DialogContent,
   tags: ['autodocs'],
   parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
     docs: {
       description: {
         component:

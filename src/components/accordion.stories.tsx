@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './accordion'
 
@@ -6,6 +6,17 @@ const meta: Meta<typeof Accordion> = {
   title: 'Components/Accordion',
   component: Accordion,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Vertically stacked collapsible sections (e.g. settings groups, FAQs). Each \`AccordionItem\` has a trigger and content slot; the trigger renders a heading with an optional secondary heading.`,
+      },
+    },
+  },
   argTypes: {
     type: { control: 'radio', options: ['single', 'multiple'] },
     collapsible: { control: 'boolean' },

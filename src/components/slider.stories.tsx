@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Slider } from './slider'
 
@@ -7,6 +7,19 @@ const meta: Meta<typeof Slider> = {
   title: 'Forms/Slider',
   component: Slider,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Continuous or stepped numeric input. Use for ranges, percentages, and visual thresholds. For exact numeric entry use \`TextField\` with \`type='number'\`.
+
+- **size**: \`sm\` for inline/dense placements · \`md\` default.`,
+      },
+    },
+  },
   argTypes: {
     color: { control: 'radio', options: ['primary', 'secondary'] },
     size: { control: 'radio', options: ['md', 'sm'] },

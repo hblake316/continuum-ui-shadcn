@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { userEvent, within } from '@storybook/test'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { userEvent, within } from 'storybook/test'
 
 import { Button } from './button'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
@@ -8,6 +8,17 @@ const meta: Meta<typeof Popover> = {
   title: 'Overlays/Popover',
   component: Popover,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Floating panel anchored to a trigger. Use for filter forms, inline menus, and disclosure surfaces. For text-only hints use \`Tooltip\`; for modal flows use \`Dialog\`.`,
+      },
+    },
+  },
 }
 
 export default meta

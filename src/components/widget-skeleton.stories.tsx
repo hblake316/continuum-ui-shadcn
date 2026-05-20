@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { WidgetSkeleton } from './widget-skeleton'
 
@@ -6,6 +6,19 @@ const meta: Meta<typeof WidgetSkeleton> = {
   title: 'Components/WidgetSkeleton',
   component: WidgetSkeleton,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Accessible shape-aware loading placeholder. Use over bare \`Skeleton\` when the placeholder represents UI a screen reader will see (sets \`role='status'\` and \`aria-busy\`).
+
+- **variant**: \`rectangle\` for cards/widgets · \`line\` for text lines · \`circle\` for avatars/icons.`,
+      },
+    },
+  },
   argTypes: {
     variant: { control: 'radio', options: ['rectangle', 'line', 'circle'] },
     srLabel: { control: 'text' },

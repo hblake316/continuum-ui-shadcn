@@ -1,5 +1,5 @@
 import type * as React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Link } from './link'
 
@@ -7,6 +7,20 @@ const meta: Meta<typeof Link> = {
   title: 'Components/Link',
   component: Link,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Styled anchor for in-page or external navigation. For action triggers use \`Button\` with \`variant: text\`.
+
+- **color**: \`primary\` for brand-blue links · \`inherit\` to match surrounding text color.
+- **underline**: \`hover\` is the default · \`always\` for high-emphasis · \`none\` for chrome-styled links.`,
+      },
+    },
+  },
   argTypes: {
     color: { control: 'radio', options: ['primary', 'inherit'] },
     underline: { control: 'radio', options: ['always', 'hover', 'none'] },

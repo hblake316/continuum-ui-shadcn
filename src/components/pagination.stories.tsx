@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import {
   Pagination,
@@ -13,6 +13,20 @@ const meta: Meta<typeof Pagination> = {
   title: 'Navigation/Pagination',
   component: Pagination,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Page selector with prev/next arrows and ellipsis. Compose \`PaginationPrev\`, \`PaginationItem\`, \`PaginationEllipsis\`, and \`PaginationNext\`.
+
+- **variant**: \`circular\` (round buttons) for marketing/list pages · \`rounded\` (square) for dense data tables.
+- **size**: pick to match the surrounding table or list density.`,
+      },
+    },
+  },
   argTypes: {
     variant: { control: 'radio', options: ['circular', 'rounded'] },
   },

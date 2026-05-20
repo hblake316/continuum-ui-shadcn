@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { AutocompleteTrigger, AutocompleteMenu, AutocompleteMenuItem } from './autocomplete'
 
@@ -7,6 +7,17 @@ const meta: Meta<typeof AutocompleteTrigger> = {
   title: 'Components/Autocomplete',
   component: AutocompleteTrigger,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Headless type-ahead combobox primitives. Use when the option list is large, async, or needs custom filtering. For short closed lists use \`Select\`; for multi-pick use \`MultiSelect\`.`,
+      },
+    },
+  },
   argTypes: {
     size: { control: 'radio', options: ['lg', 'md', 'sm'] },
     disabled: { control: 'boolean' },

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import {
   TransferList,
@@ -12,6 +12,17 @@ const meta: Meta<typeof TransferList> = {
   title: 'Forms/TransferList',
   component: TransferList,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Shuttle/dual-list picker for moving items between two sets (e.g. assigning permissions). Use only when both sides matter and the user needs to see what's NOT selected; otherwise prefer \`MultiSelect\`.`,
+      },
+    },
+  },
 }
 
 export default meta

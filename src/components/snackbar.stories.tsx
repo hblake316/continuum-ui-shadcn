@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Button } from './button'
 import { Snackbar } from './snackbar'
@@ -8,6 +8,17 @@ const meta: Meta<typeof Snackbar> = {
   title: 'Feedback/Snackbar',
   component: Snackbar,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Short transient toast (success confirmation, undo prompt). For persistent in-page messages use \`Alert\`; for blocking confirmation use \`ConfirmationDialog\`. Add an \`action\` for undo/retry affordances.`,
+      },
+    },
+  },
   argTypes: {
     message: { control: 'text' },
     open: { control: 'boolean' },

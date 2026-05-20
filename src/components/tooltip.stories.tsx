@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { userEvent, within } from '@storybook/test'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { userEvent, within } from 'storybook/test'
 import { MdInfoOutline } from 'react-icons/md'
 
 import { Button } from './button'
@@ -10,6 +10,17 @@ const meta: Meta<typeof TooltipContent> = {
   title: 'Overlays/Tooltip',
   component: TooltipContent,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Hover/focus text hint for icons and truncated content. Wrap the app in \`TooltipProvider\` once; use \`Tooltip\` + \`TooltipTrigger\` + \`TooltipContent\` per instance. For interactive popover content use \`Popover\` instead.`,
+      },
+    },
+  },
   argTypes: {
     side: { control: 'radio', options: ['top', 'right', 'bottom', 'left'] },
     sideOffset: { control: 'number' },

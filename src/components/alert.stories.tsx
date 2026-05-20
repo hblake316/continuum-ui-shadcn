@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Alert } from './alert'
 import { Button } from './button'
@@ -7,6 +7,20 @@ const meta: Meta<typeof Alert> = {
   title: 'Components/Alert',
   component: Alert,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Inline feedback banner with icon, title, and description. Use for persistent in-page messages; for short transient toasts use \`Snackbar\`; for blocking confirmation use \`ConfirmationDialog\`.
+
+- **severity**: \`error\` for failures · \`warning\` for non-blocking issues · \`info\` for neutral notices · \`success\` for confirmations.
+- **variant**: \`standard\` (light tinted bg, colored left border) is the default; \`filled\` (solid bg) for higher emphasis.`,
+      },
+    },
+  },
   argTypes: {
     severity: { control: 'radio', options: ['error', 'warning', 'info', 'success'] },
     variant: { control: 'radio', options: ['standard', 'filled'] },

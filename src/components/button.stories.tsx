@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { MdAdd, MdDeleteOutline } from 'react-icons/md'
 
 import { Button } from './button'
@@ -7,6 +7,21 @@ const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Single-action button. Use for primary CTAs and form submission. For icon-only actions use \`IconButton\`; for "main action + dropdown" use \`SplitButton\`; for in-page navigation use \`Link\`.
+
+- **variant**: \`contained\` for the primary action on a page · \`outlined\` for secondary actions · \`text\` for tertiary/inline actions.
+- **color**: \`primary\` by default · \`error\` for destructive actions · \`success\`/\`warning\`/\`info\` only when the button itself encodes state · \`action\` for the brand accent.
+- **size**: \`md\` is the default · \`sm\` for dense toolbars · \`lg\` for marketing or empty-state primaries.`,
+      },
+    },
+  },
   argTypes: {
     variant: { control: 'radio', options: ['contained', 'outlined', 'text'] },
     color: {

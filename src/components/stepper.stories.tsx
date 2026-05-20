@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Button } from './button'
 import { Step, Stepper } from './stepper'
@@ -8,6 +8,17 @@ const meta: Meta<typeof Stepper> = {
   title: 'Navigation/Stepper',
   component: Stepper,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Multi-step progress indicator for wizards and flows. The \`Stepper\` owns \`activeStep\`; each \`Step\` derives \`active\`/\`completed\`/\`upcoming\` from position. Set \`status='error'\` explicitly on a failed step.`,
+      },
+    },
+  },
   argTypes: {
     activeStep: { control: { type: 'number', min: 0 } },
   },

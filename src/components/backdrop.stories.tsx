@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import { userEvent, within } from '@storybook/test'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { userEvent, within } from 'storybook/test'
 
 import { Backdrop } from './backdrop'
 import { Button } from './button'
@@ -10,6 +10,17 @@ const meta: Meta<typeof Backdrop> = {
   title: 'Components/Backdrop',
   component: Backdrop,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Semi-transparent viewport overlay used behind custom focus surfaces. Most modal flows don't need this directly — \`Dialog\`, \`FormDialog\`, and \`ConfirmationDialog\` render their own overlay.`,
+      },
+    },
+  },
   argTypes: {
     open: { control: 'boolean' },
   },

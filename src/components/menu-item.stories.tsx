@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { MdContentCopy, MdDeleteOutline, MdEdit, MdOutlineDriveFileMove } from 'react-icons/md'
 
 import { MenuItem } from './menu-item'
@@ -7,6 +7,17 @@ const meta: Meta<typeof MenuItem> = {
   title: 'Components/MenuItem',
   component: MenuItem,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Row inside a dropdown, autocomplete menu, or context menu. Supports leading icon, checkbox, right-aligned content, and divider. Use \`selected\` to mark the active item; use \`dense\` for compact menus.`,
+      },
+    },
+  },
   argTypes: {
     selected: { control: 'boolean' },
     dense: { control: 'boolean' },

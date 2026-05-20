@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { SegmentedControl, SegmentedControlItem } from './segmented-control'
 
@@ -7,6 +7,19 @@ const meta: Meta<typeof SegmentedControl> = {
   title: 'Forms/SegmentedControl',
   component: SegmentedControl,
   tags: ['autodocs'],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+    },
+    docs: {
+      description: {
+        component: `Inline toggle between 2-4 closely-related views or modes. For more options use \`Select\` or \`Tabs\`; for a single binary use \`Switch\` or \`Toggle\`.
+
+- **variant**: \`contained\` (solid selected) for filter bars · \`outlined\` (border selected) for muted toolbar contexts.`,
+      },
+    },
+  },
   argTypes: {
     variant: { control: 'radio', options: ['contained', 'outlined'] },
     color: { control: 'radio', options: ['primary', 'action'] },
