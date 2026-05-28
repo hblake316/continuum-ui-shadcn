@@ -80,11 +80,26 @@ interface ChipProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>, VariantProps<typeof chipVariants> {
   thumbnail?: React.ReactNode
   onDelete?: () => void
+  onDeleteAriaLabel?: string
   disabled?: boolean
 }
 
 const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
-  ({ className, variant, color, size, thumbnail, onDelete, disabled, children, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      color,
+      size,
+      thumbnail,
+      onDelete,
+      onDeleteAriaLabel,
+      disabled,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div
         ref={ref}
@@ -105,7 +120,7 @@ const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
             onClick={onDelete}
             disabled={disabled}
             className="shrink-0 rounded-full opacity-70 hover:opacity-100 transition-opacity"
-            aria-label="Remove"
+            aria-label={onDeleteAriaLabel || 'Remove'}
           >
             <CloseIcon />
           </button>

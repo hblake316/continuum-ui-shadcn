@@ -76,3 +76,21 @@ export const Interactive: Story = {
     return <Switch label={checked ? 'On' : 'Off'} checked={checked} onCheckedChange={setChecked} />
   },
 }
+
+export const OffVsOn: Story = {
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Side-by-side off and on states. Verifies the thumb (white with subtle ring) is visible on white backgrounds in the off state, and that the thumb actually slides to the right when toggled on.',
+      },
+    },
+  },
+  render: () => (
+    <div className="flex items-center gap-8">
+      <Switch label="Off" />
+      <Switch label="On" defaultChecked />
+    </div>
+  ),
+}

@@ -1,0 +1,38 @@
+{
+  "name": "ui-shadcn",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/ui-shadcn/src",
+  "projectType": "library",
+  "tags": ["type:lib", "scope:shared"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{workspaceRoot}/coverage/packages/ui-shadcn"],
+      "options": {
+        "configFile": "{projectRoot}/vitest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "storybook dev -p 6006 --config-dir .storybook",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "storybook-build": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["production", "^production"],
+      "outputs": ["{projectRoot}/storybook-static"],
+      "options": {
+        "command": "storybook build --config-dir .storybook",
+        "cwd": "{projectRoot}"
+      }
+    }
+  }
+}
