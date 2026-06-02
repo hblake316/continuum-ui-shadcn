@@ -34,7 +34,7 @@ const meta: Meta<typeof SidebarBody> = {
     layout: 'fullscreen',
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+      url: 'https://www.figma.com/design/GhfBr6ptdMmkDrLpibdKqn/UI-Kit-All-Apps-Shadcn-Atoms?node-id=18755-19469&p=f&t=RS9jFsyUANIC05d3-0',
     },
     docs: {
       description: {

@@ -13,7 +13,7 @@ const meta: Meta<typeof TooltipContent> = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+      url: 'https://www.figma.com/design/GhfBr6ptdMmkDrLpibdKqn/UI-Kit-All-Apps-Shadcn-Atoms',
     },
     docs: {
       description: {

@@ -10,7 +10,7 @@ const meta: Meta<typeof Alert> = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/IejTYp6kphnHyy3X8QnfTQ/UI-Kit-All-Products-Atoms-variables?node-id=6570-46740&p=f&t=REYypyunqzscArCx-0',
+      url: 'https://www.figma.com/design/GhfBr6ptdMmkDrLpibdKqn/UI-Kit-All-Apps-Shadcn-Atoms?node-id=7611-60484&p=f&t=RS9jFsyUANIC05d3-0',
     },
     docs: {
       description: {
