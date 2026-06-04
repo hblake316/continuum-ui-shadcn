@@ -14,88 +14,64 @@ const meta: Meta<typeof Button> = {
     },
     docs: {
       description: {
-        component: `Single-action button. Use for primary CTAs and form submission. For icon-only actions use \`IconButton\`; for "main action + dropdown" use \`SplitButton\`; for in-page navigation use \`Link\`.
+        component: `Single-action button built on shadcn patterns with Radix Slot for polymorphism.
 
-- **variant**: \`contained\` for the primary action on a page · \`outlined\` for secondary actions · \`text\` for tertiary/inline actions.
-- **color**: \`primary\` by default · \`error\` for destructive actions · \`success\`/\`warning\`/\`info\` only when the button itself encodes state · \`action\` for the brand accent.
-- **size**: \`md\` is the default · \`sm\` for dense toolbars · \`lg\` for marketing or empty-state primaries.`,
+- **variant**: \`primary\` for the main CTA · \`secondary\` for supporting actions.
+- **size**: \`default\` (32px) · \`small\` (26px) for dense toolbars · \`large\` (38px) for hero CTAs · \`xsmall\` (16px) for inline compact actions.
+- **leftIcon / rightIcon**: slot an icon node before or after the label.
+- **loading**: replaces the left icon with a spinner and disables the button.
+- **asChild**: renders as the child element (e.g. a Link) instead of a \`<button>\`.`,
       },
     },
   },
   argTypes: {
-    variant: { control: 'radio', options: ['contained', 'outlined', 'text'] },
-    color: {
-      control: 'radio',
-      options: ['primary', 'error', 'warning', 'info', 'success', 'action'],
-    },
-    size: { control: 'radio', options: ['lg', 'md', 'sm'] },
+    variant: { control: 'radio', options: ['primary', 'secondary'] },
+    size: { control: 'radio', options: ['lg', 'md', 'sm', 'xs'] },
     disabled: { control: 'boolean' },
+    loading: { control: 'boolean' },
   },
 }
 
 export default meta
 type Story = StoryObj<typeof Button>
 
-export const Contained: Story = {
+export const Primary: Story = {
   args: {
-    variant: 'contained',
-    color: 'primary',
-    size: 'md',
+    variant: 'primary',
     children: 'Button',
   },
 }
 
-export const Outlined: Story = {
+export const Secondary: Story = {
   args: {
-    variant: 'outlined',
-    color: 'primary',
-    size: 'md',
+    variant: 'secondary',
     children: 'Button',
   },
 }
 
-export const Text: Story = {
-  args: {
-    variant: 'text',
-    color: 'primary',
-    size: 'md',
-    children: 'Button',
-  },
-}
-
-export const WithIcon: Story = {
-  args: {
-    variant: 'contained',
-    color: 'primary',
-    size: 'md',
-  },
-  render: (args) => (
-    <Button {...args}>
-      <MdAdd size={16} />
-      Create
-    </Button>
+export const WithLeftIcon: Story = {
+  render: () => (
+    <Button leftIcon={<MdAdd size={16} />}>Create</Button>
   ),
 }
 
-export const Destructive: Story = {
-  args: {
-    variant: 'contained',
-    color: 'error',
-    size: 'md',
-  },
-  render: (args) => (
-    <Button {...args}>
-      <MdDeleteOutline size={16} />
+export const WithRightIcon: Story = {
+  render: () => (
+    <Button variant="secondary" rightIcon={<MdDeleteOutline size={16} />}>
       Delete
     </Button>
   ),
 }
 
+export const Loading: Story = {
+  args: {
+    loading: true,
+    children: 'Saving…',
+  },
+}
+
 export const Disabled: Story = {
   args: {
-    variant: 'contained',
-    color: 'primary',
-    size: 'md',
     disabled: true,
     children: 'Disabled',
   },
@@ -104,22 +80,19 @@ export const Disabled: Story = {
 export const AllSizes: Story = {
   render: () => (
     <div className="flex items-center gap-4">
+      <Button size="xs">XSmall</Button>
       <Button size="sm">Small</Button>
-      <Button size="md">Medium</Button>
+      <Button size="md">Default</Button>
       <Button size="lg">Large</Button>
     </div>
   ),
 }
 
-export const AllColors: Story = {
+export const AllVariants: Story = {
   render: () => (
-    <div className="flex flex-wrap items-center gap-4">
-      <Button color="primary">Primary</Button>
-      <Button color="error">Error</Button>
-      <Button color="warning">Warning</Button>
-      <Button color="info">Info</Button>
-      <Button color="success">Success</Button>
-      <Button color="action">Action</Button>
+    <div className="flex items-center gap-4">
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
     </div>
   ),
 }

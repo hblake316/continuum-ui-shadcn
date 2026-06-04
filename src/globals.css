@@ -4,17 +4,17 @@
 
 @layer base {
   :root {
-    /* Primary — Figma: Primary */
+    /* Primary — Figma: Primary/light */
     --color-primary: #0f4bbd;
     --color-primary-dark: #142c6d;
     --color-primary-light: #bbc9e8;
     --color-primary-foreground: #ffffff;
     --color-primary-focus: #c5d3ef;
     --color-primary-focus-ring: #6784a6;
-    --color-primary-hover-subtle: #81a6d0;
-    --color-primary-selected: #dbe4f5;
+    --color-primary-hover-subtle: #b3c7ed;
+    --color-primary-selected: #e3e9f6;
 
-    /* Error — Figma: Error */
+    /* Error — Figma: Invalid/light */
     --color-error: #db2328;
     --color-error-dark: #af1c20;
     --color-error-light: #e97b7e;
@@ -23,8 +23,9 @@
     --color-error-focus-ring: #ed9193;
     --color-error-hover-subtle: #fff5f6;
     --color-error-alert-content: #570e10;
+    --color-error-alert-bg: #fbe9e9;
 
-    /* Warning — Figma: Warning */
+    /* Warning — Figma: Warning/light */
     --color-warning: #eaa158;
     --color-warning-dark: #cc8e50;
     --color-warning-light: #ffc992;
@@ -35,7 +36,7 @@
     --color-warning-alert-content: #734500;
     --color-warning-alert-bg: #fff0e0;
 
-    /* Info — Figma: Info */
+    /* Info — Figma: Info/light */
     --color-info: #3e6eca;
     --color-info-dark: #0f4bbd;
     --color-info-light: #87a5de;
@@ -44,8 +45,9 @@
     --color-info-focus-ring: #b7daeb;
     --color-info-hover-subtle: #f2f8fb;
     --color-info-alert-content: #07255e;
+    --color-info-alert-bg: #edf6fe;
 
-    /* Success — Figma: Succcess */
+    /* Success — Figma: Succcess/light */
     --color-success: #007d41;
     --color-success-dark: #004b27;
     --color-success-light: #7fbea0;
@@ -56,7 +58,7 @@
     --color-success-alert-content: #00321a;
     --color-success-alert-bg: #ebfaf3;
 
-    /* Action — Figma: Action */
+    /* Action — Figma: Default/light */
     --color-action: #66686b;
     --color-action-dark: #24282d;
     --color-action-light: #cccccd;
@@ -64,10 +66,10 @@
     --color-action-focus: #ececeb;
     --color-action-focus-ring: #66686b;
     --color-action-disabled-bg: #ececeb;
-    --color-action-hover-subtle: #f2f2f2;
+    --color-action-hover-subtle: #f2f3f4;
     --color-action-selected: #dcddde;
 
-    /* Secondary/Accent — Figma: Accent */
+    /* Secondary/Accent — Figma: Accent/light */
     --color-secondary: #2c95f2;
     --color-secondary-dark: #3882c2;
     --color-secondary-light: #6ab5f5;
@@ -77,24 +79,24 @@
     --color-secondary-selected: #f3f9fe;
     --color-secondary-enabled: #90c8f8;
 
-    /* Text */
+    /* Text — Figma: Text/light */
     --color-text-primary: #050e24;
     --color-text-secondary: #636978;
     --color-text-hyperlink: #8bbdf1;
     --color-disabled-text: #979797;
 
-    /* Background */
+    /* Background — Figma: Background/light */
     --color-background: #fffefe;
     --color-background-paper: #fffefe;
     --color-background-default: #dfe0e0;
     --color-background-default-less-saturated: #f2f3f4;
 
     /* Input */
-    --color-input-bg: #f2f2f2;
+    --color-input-bg: #f2f3f4;
     --color-input-border: #cccccd;
     --color-input-line: #66686b;
 
-    /* Divider */
+    /* Divider — Figma: Components/light */
     --color-divider: #dcddde;
 
     /* Borders */
@@ -103,6 +105,113 @@
     /* Overlay */
     --color-backdrop: #777f86;
     --color-snackbar-bg: #24282d;
+
+    /* Brand */
+    --color-brand-black-pearl: #01111f;
+  }
+
+  .dark {
+    /* Primary — Figma: Primary/dark */
+    --color-primary: #8ec8fa;
+    --color-primary-dark: #c7d6e3;
+    --color-primary-light: #edf5fc;
+    --color-primary-foreground: #292929;
+    --color-primary-focus: #193a57;
+    --color-primary-focus-ring: #1c4161;
+    --color-primary-hover-subtle: #153048;
+    --color-primary-selected: #26405f;
+
+    /* Error — Figma: Invalid/dark */
+    --color-error: #ed505a;
+    --color-error-dark: #7a1316;
+    --color-error-light: #bf494c;
+    --color-error-foreground: #000000;
+    --color-error-focus: #410a0c;
+    --color-error-focus-ring: #99181c;
+    --color-error-hover-subtle: #2b0708;
+    --color-error-alert-content: #ed9193;
+    --color-error-alert-bg: #321315;
+
+    /* Warning — Figma: Warning/dark */
+    --color-warning: #e59622;
+    --color-warning-dark: #b7781b;
+    --color-warning-light: #ffc167;
+    --color-warning-foreground: #000000;
+    --color-warning-focus: #7f5313;
+    --color-warning-focus-ring: #996416;
+    --color-warning-hover-subtle: #271904;
+    --color-warning-alert-content: #ffe4bd;
+    --color-warning-alert-bg: #372408;
+
+    /* Info — Figma: Info/dark */
+    --color-info: #61a0d7;
+    --color-info-dark: #3a5881;
+    --color-info-light: #709edb;
+    --color-info-foreground: #000000;
+    --color-info-focus: #032d43;
+    --color-info-focus-ring: #436796;
+    --color-info-hover-subtle: #131d2b;
+    --color-info-alert-content: #90b4e3;
+    --color-info-alert-bg: #172335;
+
+    /* Success — Figma: Succcess/dark */
+    --color-success: #66bb6a;
+    --color-success-dark: #388e3c;
+    --color-success-light: #81c784;
+    --color-success-foreground: #000000;
+    --color-success-focus: #142515;
+    --color-success-focus-ring: #47824a;
+    --color-success-hover-subtle: #0f1d10;
+    --color-success-alert-content: #e0f1e1;
+    --color-success-alert-bg: #152615;
+
+    /* Action — Figma: Default/dark */
+    --color-action: #e6e6e6;
+    --color-action-dark: #7b7e80;
+    --color-action-light: #9c9c9c;
+    --color-action-foreground: #0c1115;
+    --color-action-focus: #474747;
+    --color-action-focus-ring: #9c9c9c;
+    --color-action-disabled-bg: #474747;
+    --color-action-hover-subtle: #27292c;
+    --color-action-selected: #393c41;
+
+    /* Secondary/Accent — Figma: Accent/dark */
+    --color-secondary: #79b9f1;
+    --color-secondary-dark: #5481a8;
+    --color-secondary-light: #accce8;
+    --color-secondary-foreground: #000000;
+    --color-secondary-hover-subtle: #667888;
+    --color-secondary-focus: #324f69;
+    --color-secondary-selected: #5a7287;
+    --color-secondary-enabled: #1c3c59;
+
+    /* Text — Figma: Text/dark */
+    --color-text-primary: #dfdfdf;
+    --color-text-secondary: #a3b0b7;
+    --color-text-hyperlink: #aae6ff;
+    --color-disabled-text: #979797;
+
+    /* Background — Figma: Background/dark */
+    --color-background: #0c1115;
+    --color-background-paper: #0c1115;
+    --color-background-default: #202124;
+    --color-background-default-less-saturated: #27292c;
+
+    /* Input */
+    --color-input-bg: #27292c;
+    --color-input-border: #474747;
+    --color-input-line: #7b7e80;
+
+    /* Divider — Figma: Components/dark */
+    --color-divider: #474747;
+
+    /* Borders */
+    --color-outline-border: #474747;
+
+    /* Overlay */
+    --color-backdrop: #0b0c0d;
+    --color-snackbar-bg: #e6e6e6;
 
     /* Brand */
     --color-brand-black-pearl: #01111f;

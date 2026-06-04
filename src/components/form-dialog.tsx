@@ -2,6 +2,7 @@ import { type ReactNode } from 'react'
 import { MdCheck, MdClose, MdDeleteOutline } from 'react-icons/md'
 
 import { Button } from './button'
+import { ButtonOutline } from './button-outline'
 import { CircularProgress } from './progress'
 import { Dialog, DialogContent, DialogHeader, DialogBody, DialogFooter } from './dialog'
 
@@ -117,13 +118,12 @@ function FormDialog({
           {errorMessage && <p className="mt-2 text-sm leading-5 text-error">{errorMessage}</p>}
         </DialogBody>
         <DialogFooter className="justify-end">
-          <Button variant="outlined" color="action" onClick={onCancel} disabled={loading}>
+          <ButtonOutline variant="secondary" onClick={onCancel} disabled={loading}>
             {cancelIcon}
             {cancelLabel}
-          </Button>
+          </ButtonOutline>
           <Button
-            variant="contained"
-            color={severity === 'destructive' ? 'error' : 'primary'}
+            variant="primary"
             onClick={onConfirm}
             disabled={loading || confirmDisabled}
           >

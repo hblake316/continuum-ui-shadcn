@@ -1,5 +1,8 @@
-export { Button, buttonVariants } from './components/button'
+export { Button } from './components/button'
 export type { ButtonProps } from './components/button'
+
+export { ButtonOutline } from './components/button-outline'
+export type { ButtonOutlineProps } from './components/button-outline'
 
 export { IconButton, iconButtonVariants } from './components/icon-button'
 export type { IconButtonProps } from './components/icon-button'
