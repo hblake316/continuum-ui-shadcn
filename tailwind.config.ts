@@ -1,13 +1,25 @@
-import * as path from 'path'
-
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  content: [path.join(__dirname, 'src/**/*.{ts,tsx}')],
+  content: ['./src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       fontFamily: {
         sans: ['BDO Grotesk', 'sans-serif'],
+      },
+      fontSize: {
+        'lg-2x-initials-reg400': ['20px', { lineHeight: '27px', fontWeight: '400' }],
+        'lg-1x-body-default-reg400': ['16px', { lineHeight: '21.6px', fontWeight: '400' }],
+        'lg-1x-body-default-demi600': ['16px', { lineHeight: '21.6px', fontWeight: '600' }],
+        'lg-component-med500': ['15px', { lineHeight: '21px', fontWeight: '500' }],
+        'med-1x-input-reg400': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+        'med-1x-component-med500': ['14px', { lineHeight: '18.9px', fontWeight: '500' }],
+        'med-body-small-reg400': ['13px', { lineHeight: '17.55px', fontWeight: '400' }],
+        'med-component-med500': ['13px', { lineHeight: '13.8px', fontWeight: '500' }],
+        'med-body-small-demi600': ['13px', { lineHeight: '17.55px', fontWeight: '600' }],
+        'sm-1x-label-med500': ['12px', { lineHeight: '20px', fontWeight: '500' }],
+        'sm-1x-component-reg400': ['12px', { lineHeight: '13.92px', fontWeight: '400' }],
+        'sm-description-med500': ['10px', { lineHeight: '14px', fontWeight: '500' }],
       },
       colors: {
         background: {
@@ -43,6 +55,7 @@ const config: Config = {
           'focus-ring': 'var(--color-error-focus-ring)',
           'hover-subtle': 'var(--color-error-hover-subtle)',
           'alert-content': 'var(--color-error-alert-content)',
+          'alert-bg': 'var(--color-error-alert-bg)',
         },
         warning: {
           DEFAULT: 'var(--color-warning)',
@@ -64,6 +77,7 @@ const config: Config = {
           'focus-ring': 'var(--color-info-focus-ring)',
           'hover-subtle': 'var(--color-info-hover-subtle)',
           'alert-content': 'var(--color-info-alert-content)',
+          'alert-bg': 'var(--color-info-alert-bg)',
         },
         success: {
           DEFAULT: 'var(--color-success)',
