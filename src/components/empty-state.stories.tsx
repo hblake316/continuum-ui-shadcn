@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { MdInbox, MdOutlineSearchOff } from 'react-icons/md'
 
-import { Button } from './button'
+import { ButtonDefault } from './button-default'
 import { Card, CardContent } from './card'
 import { EmptyState } from './empty-state'
+import { ButtonOutline } from './button-outline'
 
 const meta: Meta<typeof EmptyState> = {
   title: 'Components/EmptyState',
@@ -55,14 +56,7 @@ export const WithAction: Story = {
     description: 'Audit events will appear here once enabled.',
   },
   render: (args) => (
-    <EmptyState
-      {...args}
-      action={
-        <Button variant="contained" color="action" size="sm">
-          Configure
-        </Button>
-      }
-    />
+    <EmptyState {...args} action={<ButtonDefault size="sm">Configure</ButtonDefault>} />
   ),
 }
 
@@ -75,11 +69,7 @@ export const Full: Story = {
     <EmptyState
       {...args}
       icon={<MdOutlineSearchOff size={24} />}
-      action={
-        <Button variant="outlined" color="action" size="sm">
-          Clear filters
-        </Button>
-      }
+      action={<ButtonOutline size="sm">Clear filters</ButtonOutline>}
     />
   ),
 }

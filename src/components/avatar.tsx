@@ -1,102 +1,91 @@
 import * as React from 'react'
+import * as AvatarPrimitive from '@radix-ui/react-avatar'
+import { MdPerson } from 'react-icons/md'
 
 import { cn } from '../lib/utils'
 
-/**
- * Avatar derived from Figma component:
- *   - Avatar (node 6587:47403)
- *
- * Displays user initials, an icon, or an image.
- *   variant: circular | square | rounded
- *   size:    lg (40px) | md (32px) | sm (24px)
- *   badge:   optional status indicator dot (bottom-right)
- *
- * Figma tokens:
- *   bg: action/main #66686b
- *   text: paper #fffefe
- *   badge: success/main #007d41 with paper border
- */
-
-function PersonIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-    </svg>
-  )
+const sizeClasses: Record<string, string> = {
+  lg: 'size-10',
+  md: 'size-8',
+  sm: 'size-6',
+  xs: 'size-3.5',
 }
 
-const sizeConfig = {
-  lg: {
-    container: 'size-10',
-    text: 'text-[20px] leading-[27px]',
-    icon: 'size-6',
-    badge: 'size-3 -bottom-0.5 -right-0.5',
-    badgeInner: 'inset-[2px]',
-  },
-  md: {
-    container: 'size-8',
-    text: 'text-base leading-[22px]',
-    icon: 'size-5',
-    badge: 'size-2.5 -bottom-0.5 -right-0.5',
-    badgeInner: 'inset-[2px]',
-  },
-  sm: {
-    container: 'size-6',
-    text: 'text-xs leading-4',
-    icon: 'size-4',
-    badge: 'size-2 -bottom-px -right-px',
-    badgeInner: 'inset-px',
-  },
-} as const
+const typographyClasses: Record<string, string> = {
+  lg: 'text-lg-2x-initials-reg400',
+  md: 'text-lg-1x-body-default-reg400',
+  sm: 'text-med-body-small-reg400 tracking-[0.15px]',
+  xs: 'text-[8px] font-medium leading-[14px] tracking-[0.15px]',
+}
 
-const variantConfig = {
+const radiusClasses: Record<string, string> = {
   circular: 'rounded-full',
+  rounded: 'rounded',
   square: 'rounded-none',
-  rounded: 'rounded-md',
-} as const
+}
 
-interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: 'circular' | 'square' | 'rounded'
-  size?: 'lg' | 'md' | 'sm'
-  initials?: string
+const badgeSizeClasses: Record<string, string | null> = {
+  lg: 'size-3',
+  md: 'size-3',
+  sm: 'size-2',
+  xs: null,
+}
+
+export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+  size?: 'lg' | 'md' | 'sm' | 'xs'
+  variant?: 'circular' | 'rounded' | 'square'
+  content?: 'text' | 'icon'
   badge?: boolean
-  src?: string
-  alt?: string
+  initials?: string
 }
 
 const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   (
-    { className, variant = 'circular', size = 'md', initials, badge, src, alt, children, ...props },
+    {
+      size = 'lg',
+      variant = 'circular',
+      content = 'text',
+      badge = false,
+      initials,
+      className,
+      ...props
+    },
     ref
   ) => {
-    const sizes = sizeConfig[size]
+    const radiusClass = radiusClasses[variant]
+    const badgeSize = badgeSizeClasses[size]
 
     return (
-      <div ref={ref} className={cn('relative inline-flex', className)} {...props}>
-        <div
-          className={cn(
-            'inline-flex items-center justify-center overflow-hidden bg-action text-background-paper font-sans',
-            variantConfig[variant],
-            sizes.container
-          )}
-        >
-          {src ? (
-            <img src={src} alt={alt || ''} className="size-full object-cover" />
-          ) : initials ? (
-            <span className={cn('font-normal tracking-[0px] text-center', sizes.text)}>
-              {initials}
-            </span>
-          ) : children ? (
-            children
-          ) : (
-            <PersonIcon className={sizes.icon} />
-          )}
-        </div>
+      <div
+        ref={ref}
+        data-slot="avatar"
+        className={cn('relative inline-flex shrink-0 select-none', sizeClasses[size], className)}
+        {...props}
+      >
+        <AvatarPrimitive.Root className={cn('size-full overflow-hidden', radiusClass)}>
+          <AvatarPrimitive.Fallback
+            className={cn(
+              'flex size-full items-center justify-center bg-action text-background-paper',
+              typographyClasses[size],
+              radiusClass
+            )}
+          >
+            {content === 'icon' || !initials ? (
+              <MdPerson className="size-[60%]" aria-label="User avatar" />
+            ) : (
+              initials
+            )}
+          </AvatarPrimitive.Fallback>
+        </AvatarPrimitive.Root>
 
-        {badge && (
-          <span className={cn('absolute rounded-full bg-background-paper', sizes.badge)}>
-            <span className={cn('absolute rounded-full bg-success', sizes.badgeInner)} />
-          </span>
+        {badge && badgeSize && (
+          <span
+            aria-hidden="true"
+            className={cn(
+              'absolute bottom-0 right-0 z-10 rounded-full bg-success ring-2 ring-background-paper',
+              badgeSize
+            )}
+          />
         )}
       </div>
     )
@@ -105,4 +94,3 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
 Avatar.displayName = 'Avatar'
 
 export { Avatar }
-export type { AvatarProps }

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { Button } from './button'
+import { ButtonDefault } from './button-default'
 import { Snackbar } from './snackbar'
+import { ButtonOutline } from './button-outline'
 
 const meta: Meta<typeof Snackbar> = {
   title: 'Feedback/Snackbar',
@@ -38,14 +39,9 @@ export const WithAction: Story = {
     <Snackbar
       message="Workflow archived."
       action={
-        <Button
-          variant="outlined"
-          color="action"
-          size="sm"
-          className="text-background-paper border-background-paper"
-        >
+        <ButtonOutline size="sm" className="text-background-paper border-background-paper">
           Undo
-        </Button>
+        </ButtonOutline>
       }
     />
   ),
@@ -61,7 +57,7 @@ export const TriggeredFromButton: Story = {
     const [open, setOpen] = useState(false)
     return (
       <div className="flex flex-col gap-4">
-        <Button onClick={() => setOpen(true)}>Show snackbar</Button>
+        <ButtonDefault onClick={() => setOpen(true)}>Show snackbar</ButtonDefault>
         <Snackbar open={open} message="Workflow saved." onClose={() => setOpen(false)} />
       </div>
     )

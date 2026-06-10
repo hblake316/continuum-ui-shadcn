@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { Button } from './button'
+import { ButtonDefault } from './button-default'
 import { Step, Stepper } from './stepper'
 
 const meta: Meta<typeof Stepper> = {
@@ -82,19 +82,19 @@ export const Interactive: Story = {
           <Step label="Review" />
         </Stepper>
         <div className="flex justify-end gap-2">
-          <Button
-            variant="text"
+          <ButtonDefault
+            variant="secondary"
             onClick={() => setActive((s) => Math.max(0, s - 1))}
             disabled={active === 0}
           >
             Back
-          </Button>
-          <Button
+          </ButtonDefault>
+          <ButtonDefault
             onClick={() => setActive((s) => Math.min(total, s + 1))}
             disabled={active === total}
           >
             {active === total - 1 ? 'Finish' : 'Next'}
-          </Button>
+          </ButtonDefault>
         </div>
       </div>
     )

@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { userEvent, within } from 'storybook/test'
 import { MdInfoOutline } from 'react-icons/md'
 
-import { Button } from './button'
-import { IconButton } from './icon-button'
+import { ButtonDefault } from './button-default'
+import { ButtonDefaultIcon } from './button-default-icon'
 import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip'
 
 const meta: Meta<typeof TooltipContent> = {
@@ -17,12 +17,16 @@ const meta: Meta<typeof TooltipContent> = {
     },
     docs: {
       description: {
-        component: `Hover/focus text hint for icons and truncated content. Wrap the app in \`TooltipProvider\` once; use \`Tooltip\` + \`TooltipTrigger\` + \`TooltipContent\` per instance. For interactive popover content use \`Popover\` instead.`,
+        component: `Hover/focus text hint for icons and truncated content. Wrap the app in \`TooltipProvider\` once; use \`Tooltip\` + \`TooltipTrigger\` + \`TooltipContent\` per instance.
+
+- **direction**: \`up\` (default) · \`down\` · \`left\` · \`right\` · \`none\` (no arrow).
+- \`up\` places the tooltip above the trigger; \`down\` places it below.
+- For interactive popover content use \`Popover\` instead.`,
       },
     },
   },
   argTypes: {
-    side: { control: 'radio', options: ['top', 'right', 'bottom', 'left'] },
+    direction: { control: 'radio', options: ['none', 'up', 'down', 'left', 'right'] },
     sideOffset: { control: 'number' },
   },
 }
@@ -36,11 +40,11 @@ const hoverTrigger: Story['play'] = async ({ canvasElement }) => {
 }
 
 export const Default: Story = {
-  args: { side: 'top', sideOffset: 4, children: 'Save the current workflow' },
+  args: { direction: 'up', sideOffset: 4, children: 'Save the current workflow' },
   render: (args) => (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button>Hover me</Button>
+        <ButtonDefault>Hover me</ButtonDefault>
       </TooltipTrigger>
       <TooltipContent {...args} />
     </Tooltip>
@@ -48,14 +52,31 @@ export const Default: Story = {
   play: hoverTrigger,
 }
 
-export const OnIconButton: Story = {
-  args: { side: 'top', sideOffset: 4, children: 'Schedules with the same key get deduplicated.' },
+export const OnButtonDefaultIcon: Story = {
+  args: {
+    direction: 'up',
+    sideOffset: 4,
+    children: 'Schedules with the same key get deduplicated.',
+  },
   render: (args) => (
     <Tooltip>
       <TooltipTrigger asChild>
-        <IconButton variant="text" color="action" aria-label="Info">
+        <ButtonDefaultIcon color="secondary" aria-label="Info">
           <MdInfoOutline size={18} />
-        </IconButton>
+        </ButtonDefaultIcon>
+      </TooltipTrigger>
+      <TooltipContent {...args} />
+    </Tooltip>
+  ),
+  play: hoverTrigger,
+}
+
+export const NoArrow: Story = {
+  args: { direction: 'none', sideOffset: 4, children: 'No arrow variant' },
+  render: (args) => (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <ButtonDefault>Hover me</ButtonDefault>
       </TooltipTrigger>
       <TooltipContent {...args} />
     </Tooltip>
@@ -69,27 +90,27 @@ export const Directions: Story = {
     <div className="grid grid-cols-2 gap-12 p-8">
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button>Top</Button>
+          <ButtonDefault>Up</ButtonDefault>
         </TooltipTrigger>
-        <TooltipContent side="top">Tooltip above</TooltipContent>
+        <TooltipContent direction="up">Tooltip above trigger</TooltipContent>
       </Tooltip>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button>Right</Button>
+          <ButtonDefault>Right</ButtonDefault>
         </TooltipTrigger>
-        <TooltipContent side="right">Tooltip right</TooltipContent>
+        <TooltipContent direction="right">Tooltip right of trigger</TooltipContent>
       </Tooltip>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button>Bottom</Button>
+          <ButtonDefault>Down</ButtonDefault>
         </TooltipTrigger>
-        <TooltipContent side="bottom">Tooltip below</TooltipContent>
+        <TooltipContent direction="down">Tooltip below trigger</TooltipContent>
       </Tooltip>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button>Left</Button>
+          <ButtonDefault>Left</ButtonDefault>
         </TooltipTrigger>
-        <TooltipContent side="left">Tooltip left</TooltipContent>
+        <TooltipContent direction="left">Tooltip left of trigger</TooltipContent>
       </Tooltip>
     </div>
   ),

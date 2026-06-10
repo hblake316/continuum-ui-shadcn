@@ -48,6 +48,32 @@ describe('ButtonOutline', () => {
     expect(screen.queryByTestId('right-icon')).not.toBeInTheDocument()
   })
 
+  it('shows spinner, disables, and sets aria-busy when loading', () => {
+    render(<ButtonOutline loading>Saving</ButtonOutline>)
+    const button = screen.getByRole('button')
+    expect(button).toBeDisabled()
+    expect(button).toHaveAttribute('aria-busy', 'true')
+    expect(button.querySelector('.animate-spin')).not.toBeNull()
+  })
+
+  it('hides leftIcon when loading', () => {
+    render(
+      <ButtonOutline loading leftIcon={<span data-testid="left-icon" />}>
+        Saving
+      </ButtonOutline>
+    )
+    expect(screen.queryByTestId('left-icon')).not.toBeInTheDocument()
+  })
+
+  it('hides rightIcon when loading', () => {
+    render(
+      <ButtonOutline loading rightIcon={<span data-testid="right-icon" />}>
+        Saving
+      </ButtonOutline>
+    )
+    expect(screen.queryByTestId('right-icon')).not.toBeInTheDocument()
+  })
+
   it('is disabled when disabled prop is true', () => {
     render(<ButtonOutline disabled>Nope</ButtonOutline>)
     expect(screen.getByRole('button')).toBeDisabled()

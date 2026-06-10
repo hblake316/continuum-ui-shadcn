@@ -13,99 +13,107 @@ const meta: Meta<typeof StatusDot> = {
     },
     docs: {
       description: {
-        component: `Tiny presence/state dot (online/offline/error/etc). Use beside text or avatars. For status with an inline label use \`StatusIndicator\`; for counts on another element use \`Badge\`.
+        component: `Tiny presence/state dot (online/offline/error/etc). Use beside text or avatars. For status with an inline label use \`StatusIndicator\`.
 
-- **status**: \`online\` · \`offline\` · \`degraded\` · \`success\` · \`error\` · \`warning\` · \`info\`.
-- Set \`pulse\` for live/active states.`,
+- **variant**: \`standard\` (default) — pill badge with text · \`dot\` — 8×8 decorative circle.
+- **color**: \`default\` · \`primary\` · \`secondary\` · \`error\` · \`warning\` · \`info\` · \`success\`.
+- \`default\` color Standard has no background — text only on transparent.
+- Pair \`dot\` with adjacent text in the parent for accessible labelling.`,
       },
     },
   },
   argTypes: {
-    status: {
+    variant: { control: 'radio', options: ['standard', 'dot'] },
+    color: {
       control: 'radio',
-      options: ['online', 'offline', 'degraded', 'success', 'error', 'warning', 'info'],
+      options: ['default', 'primary', 'secondary', 'error', 'warning', 'info', 'success'],
     },
-    size: { control: 'radio', options: ['sm', 'md'] },
-    pulse: { control: 'boolean' },
   },
 }
 
 export default meta
 type Story = StoryObj<typeof StatusDot>
 
-export const AllStatuses: Story = {
+export const Standard: Story = {
+  args: { variant: 'standard', color: 'success', children: 'Online' },
+}
+
+export const Dot: Story = {
+  args: { variant: 'dot', color: 'success' },
+}
+
+export const AllColors: Story = {
+  parameters: { controls: { disable: true } },
   render: () => (
-    <div className="flex flex-col gap-2 text-sm text-text-primary">
-      <span className="inline-flex items-center gap-2">
-        <StatusDot status="online" />
-        Online
-      </span>
-      <span className="inline-flex items-center gap-2">
-        <StatusDot status="offline" />
-        Offline
-      </span>
-      <span className="inline-flex items-center gap-2">
-        <StatusDot status="degraded" />
-        Degraded
-      </span>
-      <span className="inline-flex items-center gap-2">
-        <StatusDot status="success" />
-        Success
-      </span>
-      <span className="inline-flex items-center gap-2">
-        <StatusDot status="error" />
-        Error
-      </span>
-      <span className="inline-flex items-center gap-2">
-        <StatusDot status="warning" />
-        Warning
-      </span>
-      <span className="inline-flex items-center gap-2">
-        <StatusDot status="info" />
-        Info
-      </span>
+    <div className="flex flex-col gap-3">
+      <div className="flex items-center gap-4">
+        <StatusDot variant="standard" color="default">
+          Default
+        </StatusDot>
+        <StatusDot variant="dot" color="default" />
+      </div>
+      <div className="flex items-center gap-4">
+        <StatusDot variant="standard" color="primary">
+          Primary
+        </StatusDot>
+        <StatusDot variant="dot" color="primary" />
+      </div>
+      <div className="flex items-center gap-4">
+        <StatusDot variant="standard" color="secondary">
+          Secondary
+        </StatusDot>
+        <StatusDot variant="dot" color="secondary" />
+      </div>
+      <div className="flex items-center gap-4">
+        <StatusDot variant="standard" color="error">
+          Error
+        </StatusDot>
+        <StatusDot variant="dot" color="error" />
+      </div>
+      <div className="flex items-center gap-4">
+        <StatusDot variant="standard" color="warning">
+          Warning
+        </StatusDot>
+        <StatusDot variant="dot" color="warning" />
+      </div>
+      <div className="flex items-center gap-4">
+        <StatusDot variant="standard" color="info">
+          Info
+        </StatusDot>
+        <StatusDot variant="dot" color="info" />
+      </div>
+      <div className="flex items-center gap-4">
+        <StatusDot variant="standard" color="success">
+          Success
+        </StatusDot>
+        <StatusDot variant="dot" color="success" />
+      </div>
     </div>
   ),
 }
 
-export const Sizes: Story = {
+export const DotWithLabel: Story = {
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story: 'Pair the dot variant with adjacent text — the dot itself is `aria-hidden`.',
+      },
+    },
+  },
   render: () => (
     <div className="flex flex-col gap-2 text-sm text-text-primary">
       <span className="inline-flex items-center gap-2">
-        <StatusDot status="online" size="sm" />
-        Small (default)
+        <StatusDot variant="dot" color="success" />
+        Production connected
       </span>
       <span className="inline-flex items-center gap-2">
-        <StatusDot status="online" size="md" />
-        Medium
-      </span>
-    </div>
-  ),
-}
-
-export const Pulse: Story = {
-  render: () => (
-    <span className="inline-flex items-center gap-2 text-sm text-text-primary">
-      <StatusDot status="online" pulse />
-      Live
-    </span>
-  ),
-}
-
-export const LabelComposition: Story = {
-  render: () => (
-    <div className="flex flex-col gap-2 text-sm text-text-primary">
-      <span className="inline-flex items-center gap-2">
-        <StatusDot status="online" />
-        <span>Production environment connected</span>
+        <StatusDot variant="dot" color="warning" />
+        Staging degraded
       </span>
       <span className="inline-flex items-center gap-2">
-        <StatusDot status="degraded" />
-        <span>Staging environment degraded</span>
-      </span>
-      <span className="inline-flex items-center gap-2">
-        <StatusDot status="offline" />
-        <span>QA environment unreachable</span>
+        <StatusDot variant="dot" color="error" />
+        QA unreachable
       </span>
     </div>
   ),

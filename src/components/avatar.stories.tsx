@@ -16,13 +16,14 @@ const meta: Meta<typeof Avatar> = {
         component: `User identity tile rendered as initials, image, or icon. Optional \`badge\` slot in the bottom-right for presence/status.
 
 - **variant**: \`circular\` for people · \`square\`/\`rounded\` for resources or brand marks.
-- **size**: \`sm\` (24px) for inline rows · \`md\` (32px) default · \`lg\` (40px) for profile headers.`,
+- **size**: \`lg\` (40px) · \`md\` (32px) · \`sm\` (24px) · \`xs\` (14px).`,
       },
     },
   },
   argTypes: {
     variant: { control: 'radio', options: ['circular', 'square', 'rounded'] },
-    size: { control: 'radio', options: ['lg', 'md', 'sm'] },
+    size: { control: 'radio', options: ['lg', 'md', 'sm', 'xs'] },
+    content: { control: 'radio', options: ['text', 'icon'] },
     badge: { control: 'boolean' },
     initials: { control: 'text' },
   },
@@ -36,46 +37,54 @@ export const Initials: Story = {
 }
 
 export const Icon: Story = {
-  args: { size: 'md', variant: 'circular' },
-}
-
-const sampleAvatarDataUrl =
-  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>" +
-  "<rect width='64' height='64' fill='%23226BD8'/>" +
-  "<circle cx='32' cy='26' r='10' fill='%23fff'/>" +
-  "<path d='M14 56c0-10 8-18 18-18s18 8 18 18z' fill='%23fff'/></svg>"
-
-export const Image: Story = {
-  args: {
-    size: 'md',
-    variant: 'circular',
-    src: sampleAvatarDataUrl,
-    alt: 'User avatar',
-  },
+  args: { size: 'md', variant: 'circular', content: 'icon' },
 }
 
 export const WithBadge: Story = {
-  args: { initials: 'HB', size: 'md', variant: 'circular', badge: true },
+  args: { initials: 'HB', size: 'lg', variant: 'circular', badge: true },
 }
 
-export const AllSizes: Story = {
-  parameters: { controls: { disable: true } },
-  render: () => (
-    <div className="flex items-center gap-4">
-      <Avatar size="sm" initials="SM" />
-      <Avatar size="md" initials="MD" />
-      <Avatar size="lg" initials="LG" />
-    </div>
-  ),
-}
+const sizes = ['lg', 'md', 'sm', 'xs'] as const
+const variants = ['circular', 'rounded', 'square'] as const
 
 export const AllVariants: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
-    <div className="flex items-center gap-4">
-      <Avatar variant="circular" initials="CI" />
-      <Avatar variant="rounded" initials="RO" />
-      <Avatar variant="square" initials="SQ" />
+    <div className="flex flex-col gap-6">
+      <div>
+        <p className="mb-2 text-sm font-medium text-muted-foreground">Text</p>
+        <div className="flex flex-col gap-3">
+          {variants.map((v) => (
+            <div key={v} className="flex items-center gap-3">
+              <span className="w-16 text-xs text-muted-foreground">{v}</span>
+              {sizes.map((s) => (
+                <Avatar key={s} size={s} variant={v} initials="OP" />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <p className="mb-2 text-sm font-medium text-muted-foreground">Icon</p>
+        <div className="flex flex-col gap-3">
+          {variants.map((v) => (
+            <div key={v} className="flex items-center gap-3">
+              <span className="w-16 text-xs text-muted-foreground">{v}</span>
+              {sizes.map((s) => (
+                <Avatar key={s} size={s} variant={v} content="icon" />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <p className="mb-2 text-sm font-medium text-muted-foreground">With badge</p>
+        <div className="flex items-center gap-3">
+          {sizes.map((s) => (
+            <Avatar key={s} size={s} variant="circular" initials="OP" badge />
+          ))}
+        </div>
+      </div>
     </div>
   ),
 }

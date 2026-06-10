@@ -1,5 +1,6 @@
 import * as React from 'react'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
+import { MdCheckBox, MdCheckBoxOutlineBlank, MdIndeterminateCheckBox } from 'react-icons/md'
 
 import { cn } from '../lib/utils'
 
@@ -8,89 +9,57 @@ import { cn } from '../lib/utils'
  *   - Checkbox (node 6543:43052)
  *
  * Variants:
- *   color:  primary | secondary | default
- *   size:   lg (38px touch, 28px icon) | md (32px touch, 24px icon) | sm (26px touch, 20px icon)
- *   states: enabled, hovered (circular ripple bg), focused (circular ripple bg), disabled
+ *   color:  primary | secondary | invalid
+ *   states: enabled, hovered (2px focus ring), focused (3px focus ring), disabled
  *
- * Uses @radix-ui/react-checkbox for accessible checked/indeterminate state management.
+ * Hit area 24×24px · Icon 18×18px · Focus ring 13.5×13.5px (2px border-radius)
  */
 
-// ── Size config ─────────────────────────────────────────────────
-
-const sizeConfig = {
-  lg: { outer: 'size-[38px] rounded-[19px] p-[9px]', icon: 'size-[28px]' },
-  md: { outer: 'size-8 rounded-[16px] p-1', icon: 'size-6' },
-  sm: { outer: 'size-[26px] rounded-[13px] p-[3px]', icon: 'size-5' },
-} as const
-
-// ── Color config ────────────────────────────────────────────────
+// ── Color config ──────────────────────────────────────────────────────────────
 
 const colorConfig = {
   primary: {
     checked: 'text-primary',
     unchecked: 'text-text-secondary',
-    hover: 'group-hover:bg-primary-hover-subtle',
-    focus: 'group-focus-visible:bg-primary-focus',
+    label: 'text-text-primary',
+    ringHover: 'group-hover:border-primary-hover-subtle',
+    ringFocus: 'group-focus-visible:border-primary-hover-subtle',
   },
   secondary: {
-    checked: 'text-secondary',
-    unchecked: 'text-text-secondary',
-    hover: 'group-hover:bg-secondary-hover-subtle',
-    focus: 'group-focus-visible:bg-secondary-focus',
-  },
-  default: {
     checked: 'text-text-primary',
     unchecked: 'text-text-secondary',
-    hover: 'group-hover:bg-action-hover-subtle',
-    focus: 'group-focus-visible:bg-action-focus',
+    label: 'text-text-primary',
+    ringHover: 'group-hover:border-action-focus',
+    ringFocus: 'group-focus-visible:border-action-selected',
+  },
+  invalid: {
+    checked: 'text-error',
+    unchecked: 'text-error',
+    label: 'text-error',
+    ringHover: 'group-hover:border-error-focus',
+    ringFocus: 'group-focus-visible:border-error-focus',
   },
 } as const
 
-// ── Icons ───────────────────────────────────────────────────────
-
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-    </svg>
-  )
-}
-
-function IndeterminateIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z" />
-    </svg>
-  )
-}
-
-function UncheckedIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
-    </svg>
-  )
-}
-
-// ── Component ───────────────────────────────────────────────────
+// ── Component ─────────────────────────────────────────────────────────────────
 
 interface CheckboxProps extends Omit<
   React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
   'color'
 > {
-  color?: 'primary' | 'secondary' | 'default'
-  size?: 'lg' | 'md' | 'sm'
+  color?: 'primary' | 'secondary' | 'invalid'
   label?: string
 }
 
 const Checkbox = React.forwardRef<React.ComponentRef<typeof CheckboxPrimitive.Root>, CheckboxProps>(
-  ({ className, color = 'primary', size = 'md', label, disabled, checked, ...props }, ref) => {
-    const sizes = sizeConfig[size]
+  ({ className, color = 'primary', label, disabled, checked, ...props }, ref) => {
     const colors = colorConfig[color]
+    const isDisabledIndeterminate = disabled && checked === 'indeterminate'
+
     return (
       <label
         className={cn(
-          'inline-flex items-center gap-0 font-sans',
+          'inline-flex items-start gap-2 font-sans',
           disabled ? 'pointer-events-none' : 'cursor-pointer'
         )}
       >
@@ -99,44 +68,49 @@ const Checkbox = React.forwardRef<React.ComponentRef<typeof CheckboxPrimitive.Ro
           checked={checked}
           disabled={disabled}
           className={cn(
-            'group relative inline-flex items-center justify-center focus-visible:outline-none',
-            sizes.outer,
+            'group relative flex size-6 flex-none items-center justify-center focus-visible:outline-none',
             className
           )}
           {...props}
         >
-          {/* Hover/focus ripple background */}
-          <span
-            className={cn(
-              'absolute inset-0 rounded-full transition-colors',
-              !disabled && colors.hover,
-              !disabled && colors.focus
-            )}
-          />
-
-          {/* Checkbox icon */}
-          <CheckboxPrimitive.Indicator forceMount className="relative z-10">
+          {/* Icon: 18×18px (12.5% inset from 24×24 hit area = 3px each side) */}
+          <CheckboxPrimitive.Indicator forceMount>
             {checked === 'indeterminate' ? (
-              <IndeterminateIcon
-                className={cn(sizes.icon, disabled ? 'text-disabled-text' : colors.checked)}
+              <MdIndeterminateCheckBox
+                className={cn('size-[18px]', disabled ? 'text-disabled-text' : colors.checked)}
               />
             ) : checked ? (
-              <CheckIcon
-                className={cn(sizes.icon, disabled ? 'text-disabled-text' : colors.checked)}
+              <MdCheckBox
+                className={cn('size-[18px]', disabled ? 'text-disabled-text' : colors.checked)}
               />
             ) : (
-              <UncheckedIcon
-                className={cn(sizes.icon, disabled ? 'text-disabled-text' : colors.unchecked)}
+              <MdCheckBoxOutlineBlank
+                className={cn('size-[18px]', disabled ? 'text-disabled-text' : colors.unchecked)}
               />
             )}
           </CheckboxPrimitive.Indicator>
+
+          {/* Focus ring: 13.5×13.5px aligned to the SVG drawn border.
+            inset-[5.25px] = 3px (icon margin) + 2.25px (12.5% of 18px icon). */}
+          <span
+            className={cn(
+              'pointer-events-none absolute inset-[5.25px] rounded-sm border-0 border-solid border-transparent',
+              !disabled && [
+                'group-hover:border-2',
+                colors.ringHover,
+                'group-focus-visible:border-[3px]',
+                colors.ringFocus,
+              ]
+            )}
+          />
         </CheckboxPrimitive.Root>
 
         {label && (
           <span
             className={cn(
-              'text-base leading-[21.6px] tracking-[0.15px]',
-              disabled ? 'text-disabled-text' : 'text-text-primary'
+              'text-sm-1x-label-med500 whitespace-nowrap',
+              isDisabledIndeterminate ? 'pt-1' : 'pt-0.5',
+              disabled ? 'text-disabled-text' : colors.label
             )}
           >
             {label}

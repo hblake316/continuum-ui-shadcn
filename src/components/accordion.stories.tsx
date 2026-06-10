@@ -13,7 +13,7 @@ const meta: Meta<typeof Accordion> = {
     },
     docs: {
       description: {
-        component: `Vertically stacked collapsible sections (e.g. settings groups, FAQs). Each \`AccordionItem\` has a trigger and content slot; the trigger renders a heading with an optional secondary heading.`,
+        component: `Vertically stacked collapsible sections (e.g. settings groups, FAQs). Each \`AccordionItem\` has a trigger and content slot.`,
       },
     },
   },
@@ -88,28 +88,6 @@ export const WithDisabledItem: Story = {
       <AccordionItem value="item-3">
         <AccordionTrigger>Staging</AccordionTrigger>
         <AccordionContent>8 healthy services.</AccordionContent>
-      </AccordionItem>
-    </Accordion>
-  ),
-}
-
-export const WithSecondaryHeading: Story = {
-  args: { type: 'single', collapsible: true },
-  render: (args) => (
-    <Accordion {...args} className="w-[640px]">
-      <AccordionItem value="item-1">
-        <AccordionTrigger secondaryHeading="Last run: 2 hours ago">
-          Nightly ETL pipeline
-        </AccordionTrigger>
-        <AccordionContent>
-          Extracts the previous day's events and loads them into the warehouse.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-2">
-        <AccordionTrigger secondaryHeading="Last run: yesterday">
-          Weekly compliance export
-        </AccordionTrigger>
-        <AccordionContent>Exports audit events for the compliance team.</AccordionContent>
       </AccordionItem>
     </Accordion>
   ),

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { userEvent, within } from 'storybook/test'
 
-import { Button } from './button'
+import { ButtonDefault } from './button-default'
 import {
   Dialog,
   DialogBody,
@@ -46,14 +46,14 @@ export const Narrow: Story = {
   render: () => (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Open dialog</Button>
+        <ButtonDefault>Open dialog</ButtonDefault>
       </DialogTrigger>
       <DialogContent size="narrow">
         <DialogHeader>Save changes</DialogHeader>
         <DialogBody>Your unsaved changes will be applied to the workflow.</DialogBody>
         <DialogFooter>
-          <Button variant="text">Cancel</Button>
-          <Button>Save</Button>
+          <ButtonDefault variant="secondary">Cancel</ButtonDefault>
+          <ButtonDefault>Save</ButtonDefault>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -65,7 +65,7 @@ export const Wide: Story = {
   render: () => (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Open wide dialog</Button>
+        <ButtonDefault>Open wide dialog</ButtonDefault>
       </DialogTrigger>
       <DialogContent size="wide">
         <DialogHeader>Configure integration</DialogHeader>
@@ -76,8 +76,8 @@ export const Wide: Story = {
           </div>
         </DialogBody>
         <DialogFooter>
-          <Button variant="text">Cancel</Button>
-          <Button>Save</Button>
+          <ButtonDefault variant="secondary">Cancel</ButtonDefault>
+          <ButtonDefault>Save</ButtonDefault>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -89,7 +89,7 @@ export const ExtraWide: Story = {
   render: () => (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Open x-wide dialog</Button>
+        <ButtonDefault>Open x-wide dialog</ButtonDefault>
       </DialogTrigger>
       <DialogContent size="x-wide">
         <DialogHeader>Workflow summary</DialogHeader>
@@ -97,7 +97,7 @@ export const ExtraWide: Story = {
           <p>Use the x-wide variant when the body needs to host a wide table or canvas.</p>
         </DialogBody>
         <DialogFooter>
-          <Button variant="text">Close</Button>
+          <ButtonDefault variant="secondary">Close</ButtonDefault>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -109,14 +109,14 @@ export const HideClose: Story = {
   render: () => (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Open without close button</Button>
+        <ButtonDefault>Open without close button</ButtonDefault>
       </DialogTrigger>
       <DialogContent size="narrow">
         <DialogHeader hideClose>Confirm action</DialogHeader>
         <DialogBody>This dialog can only be dismissed via the footer buttons.</DialogBody>
         <DialogFooter>
-          <Button variant="text">Cancel</Button>
-          <Button>Confirm</Button>
+          <ButtonDefault variant="secondary">Cancel</ButtonDefault>
+          <ButtonDefault>Confirm</ButtonDefault>
         </DialogFooter>
       </DialogContent>
     </Dialog>

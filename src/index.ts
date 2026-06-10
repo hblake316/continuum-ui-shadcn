@@ -1,11 +1,20 @@
-export { Button } from './components/button'
-export type { ButtonProps } from './components/button'
+export { ButtonDefault } from './components/button-default'
+export type { ButtonDefaultProps } from './components/button-default'
 
 export { ButtonOutline } from './components/button-outline'
 export type { ButtonOutlineProps } from './components/button-outline'
 
-export { IconButton, iconButtonVariants } from './components/icon-button'
-export type { IconButtonProps } from './components/icon-button'
+export { ButtonGhost, buttonGhostVariants } from './components/button-ghost'
+export type { ButtonGhostProps } from './components/button-ghost'
+
+export { ButtonDefaultIcon, buttonDefaultIconVariants } from './components/button-default-icon'
+export type { ButtonDefaultIconProps } from './components/button-default-icon'
+
+export { ButtonOutlineIcon, buttonOutlineIconVariants } from './components/button-outline-icon'
+export type { ButtonOutlineIconProps } from './components/button-outline-icon'
+
+export { ButtonGhostIcon, buttonGhostIconVariants } from './components/button-ghost-icon'
+export type { ButtonGhostIconProps } from './components/button-ghost-icon'
 
 export { SplitButton } from './components/split-button'
 export type { SplitButtonProps } from './components/split-button'
@@ -58,9 +67,6 @@ export {
 } from './components/dialog'
 export type { DialogContentProps, DialogHeaderProps } from './components/dialog'
 
-export { Backdrop } from './components/backdrop'
-export type { BackdropProps } from './components/backdrop'
-
 export { Snackbar } from './components/snackbar'
 export type { SnackbarProps } from './components/snackbar'
 
@@ -70,11 +76,14 @@ export type { CardProps, CardHeaderProps } from './components/card'
 export { Avatar } from './components/avatar'
 export type { AvatarProps } from './components/avatar'
 
-export { Badge } from './components/badge'
-export type { BadgeProps } from './components/badge'
+export { BadgeDefault, badgeDefaultVariants } from './components/badge-default'
+export type { BadgeDefaultProps } from './components/badge-default'
 
-export { Chip, chipVariants } from './components/chip'
-export type { ChipProps } from './components/chip'
+export { BadgeOutline, badgeOutlineVariants } from './components/badge-outline'
+export type { BadgeOutlineProps } from './components/badge-outline'
+
+export { ToggleBadge } from './components/toggle-badge'
+export type { ToggleBadgeProps } from './components/toggle-badge'
 
 export { Divider } from './components/divider'
 export type { DividerProps } from './components/divider'
@@ -118,7 +127,6 @@ export {
   AccordionTrigger,
   AccordionContent,
 } from './components/accordion'
-export type { AccordionTriggerProps } from './components/accordion'
 
 export { Breadcrumbs, BreadcrumbLink, BreadcrumbCurrent } from './components/breadcrumbs'
 export type { BreadcrumbsProps } from './components/breadcrumbs'
@@ -129,8 +137,7 @@ export type { LinkProps } from './components/link'
 export { MenuItem } from './components/menu-item'
 export type { MenuItemProps } from './components/menu-item'
 
-export { Alert, alertVariants } from './components/alert'
-export type { AlertProps } from './components/alert'
+export { Alert, AlertAction, AlertDescription, AlertTitle } from './components/alert'
 
 export { LinearProgress, CircularProgress } from './components/progress'
 export type { LinearProgressProps, CircularProgressProps } from './components/progress'
@@ -151,6 +158,7 @@ export { Stepper, Step } from './components/stepper'
 export type { StepperProps, StepProps } from './components/stepper'
 
 export { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from './components/tooltip'
+export type { TooltipContentProps } from './components/tooltip'
 
 export { Slider } from './components/slider'
 export type { SliderProps } from './components/slider'
@@ -166,9 +174,6 @@ export type {
   TransferListItemProps,
   TransferListButtonsProps,
 } from './components/transfer-list'
-
-export { Toggle, toggleVariants } from './components/toggle'
-export type { ToggleProps } from './components/toggle'
 
 export { FormDialog } from './components/form-dialog'
 export type { FormDialogProps } from './components/form-dialog'
@@ -200,7 +205,19 @@ export { EmptyState } from './components/empty-state'
 export type { EmptyStateProps } from './components/empty-state'
 
 export { StatusDot } from './components/status-dot'
-export type { StatusDotProps, StatusDotStatus } from './components/status-dot'
+export type {
+  StatusDotProps,
+  StatusDotStatus,
+  StatusDotColor,
+  StatusDotVariant,
+} from './components/status-dot'
+
+export { StatusIconAndDot } from './components/status-icon-and-dot'
+export type {
+  StatusIconAndDotProps,
+  StatusIconAndDotVariant,
+  StatusIconAndDotColor,
+} from './components/status-icon-and-dot'
 
 export { StatusIndicator } from './components/status-indicator'
 export type { StatusIndicatorProps, StatusTone } from './components/status-indicator'

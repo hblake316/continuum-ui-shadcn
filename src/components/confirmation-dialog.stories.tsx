@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { ConfirmationDialog } from './confirmation-dialog'
-import { Button } from './button'
+import { ButtonDefault } from './button-default'
 
 const meta: Meta<typeof ConfirmationDialog> = {
   title: 'Dialogs/ConfirmationDialog',
@@ -41,7 +41,7 @@ function DialogDemo(props: {
   const [open, setOpen] = useState(false)
   return (
     <>
-      <Button onClick={() => setOpen(true)}>{props.label}</Button>
+      <ButtonDefault onClick={() => setOpen(true)}>{props.label}</ButtonDefault>
       <ConfirmationDialog
         {...props.dialogProps}
         open={open}
@@ -140,7 +140,7 @@ export const Interactive: Story = {
 
     return (
       <>
-        <Button onClick={() => setOpen(true)}>Open interactive demo</Button>
+        <ButtonDefault onClick={() => setOpen(true)}>Open interactive demo</ButtonDefault>
         <ConfirmationDialog
           open={open}
           title="Confirm action"

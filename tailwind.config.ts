@@ -135,6 +135,28 @@ const config: Config = {
         brand: {
           'black-pearl': 'var(--color-brand-black-pearl)',
         },
+        // Reserved for future env-color-swap feature: users will be able to
+        // choose which gradient colors are assigned to each environment type.
+        // These tokens expose the individual stops so the picker can preview
+        // and apply them. Dark-mode variants will be determined when that
+        // feature ships.
+        header: {
+          'dev-start': 'var(--color-header-dev-start)',
+          'dev-mid': 'var(--color-header-dev-mid)',
+          'staging-start': 'var(--color-header-staging-start)',
+          'staging-mid': 'var(--color-header-staging-mid)',
+          'test-start': 'var(--color-header-test-start)',
+          'test-mid': 'var(--color-header-test-mid)',
+          'prod-start': 'var(--color-header-prod-start)',
+          'prod-mid': 'var(--color-header-prod-mid)',
+        },
+      },
+      backgroundImage: {
+        'header-default': 'var(--gradient-header-default)',
+        'header-dev': 'var(--gradient-header-dev)',
+        'header-test': 'var(--gradient-header-test)',
+        'header-staging': 'var(--gradient-header-staging)',
+        'header-production': 'var(--gradient-header-production)',
       },
       borderRadius: {
         DEFAULT: '4px',

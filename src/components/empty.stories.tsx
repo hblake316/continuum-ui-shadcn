@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { MdInbox, MdOutlineSearchOff } from 'react-icons/md'
 
-import { Button } from './button'
+import { ButtonOutline } from './button-outline'
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from './empty'
 
 const meta: Meta<typeof Empty> = {
@@ -61,9 +61,7 @@ export const WithAction: Story = {
         <EmptyDescription>Try a different search or clear your filters.</EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
-        <Button variant="outlined" color="action" size="sm">
-          Clear filters
-        </Button>
+        <ButtonOutline size="sm">Clear filters</ButtonOutline>
       </EmptyContent>
     </Empty>
   ),

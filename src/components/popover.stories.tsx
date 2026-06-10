@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { userEvent, within } from 'storybook/test'
 
-import { Button } from './button'
+import { ButtonDefault } from './button-default'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
 
 const meta: Meta<typeof Popover> = {
@@ -33,7 +33,7 @@ export const Default: Story = {
   render: () => (
     <Popover>
       <PopoverTrigger asChild>
-        <Button>Open popover</Button>
+        <ButtonDefault>Open popover</ButtonDefault>
       </PopoverTrigger>
       <PopoverContent className="w-64 p-4">
         <p className="text-sm font-medium text-text-primary">Workflow details</p>
@@ -50,7 +50,7 @@ export const Centered: Story = {
   render: () => (
     <Popover>
       <PopoverTrigger asChild>
-        <Button>Open centered</Button>
+        <ButtonDefault>Open centered</ButtonDefault>
       </PopoverTrigger>
       <PopoverContent align="center" className="w-56 p-3">
         <p className="text-sm text-text-primary">Aligned to the center of the trigger.</p>
@@ -64,7 +64,7 @@ export const Above: Story = {
   render: () => (
     <Popover>
       <PopoverTrigger asChild>
-        <Button>Open above</Button>
+        <ButtonDefault>Open above</ButtonDefault>
       </PopoverTrigger>
       <PopoverContent side="top" align="start" className="w-56 p-3">
         <p className="text-sm text-text-primary">This popover appears above the trigger.</p>

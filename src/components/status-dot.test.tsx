@@ -4,64 +4,193 @@ import { describe, it, expect } from 'vitest'
 import { StatusDot } from './status-dot'
 
 describe('StatusDot', () => {
-  it('maps online to bg-success', () => {
-    render(<StatusDot status="online" data-testid="dot" />)
-    expect(screen.getByTestId('dot').className).toContain('bg-success')
+  // ── Dot variant ───────────────────────────────────────────────────────────
+
+  it('dot: renders an 8×8 circle (size-2 rounded-full)', () => {
+    render(<StatusDot variant="dot" data-testid="dot" />)
+    const el = screen.getByTestId('dot')
+    expect(el.className).toContain('size-2')
+    expect(el.className).toContain('rounded-full')
   })
 
-  it('maps success to bg-success', () => {
-    render(<StatusDot status="success" data-testid="dot" />)
-    expect(screen.getByTestId('dot').className).toContain('bg-success')
+  it('dot: is aria-hidden', () => {
+    render(<StatusDot variant="dot" data-testid="dot" />)
+    expect(screen.getByTestId('dot')).toHaveAttribute('aria-hidden', 'true')
   })
 
-  it('maps offline to bg-error', () => {
-    render(<StatusDot status="offline" data-testid="dot" />)
+  it('dot: children are ignored', () => {
+    render(
+      <StatusDot variant="dot" data-testid="dot">
+        Online
+      </StatusDot>
+    )
+    expect(screen.getByTestId('dot')).toBeEmptyDOMElement()
+    expect(screen.queryByText('Online')).toBeNull()
+  })
+
+  it('dot: default color uses neutral background', () => {
+    render(<StatusDot variant="dot" color="default" data-testid="dot" />)
+    expect(screen.getByTestId('dot').className).toContain('bg-text-secondary')
+  })
+
+  it('dot: primary color', () => {
+    render(<StatusDot variant="dot" color="primary" data-testid="dot" />)
+    expect(screen.getByTestId('dot').className).toContain('bg-primary')
+  })
+
+  it('dot: secondary color', () => {
+    render(<StatusDot variant="dot" color="secondary" data-testid="dot" />)
+    expect(screen.getByTestId('dot').className).toContain('bg-secondary')
+  })
+
+  it('dot: error color', () => {
+    render(<StatusDot variant="dot" color="error" data-testid="dot" />)
     expect(screen.getByTestId('dot').className).toContain('bg-error')
   })
 
-  it('maps error to bg-error', () => {
-    render(<StatusDot status="error" data-testid="dot" />)
-    expect(screen.getByTestId('dot').className).toContain('bg-error')
-  })
-
-  it('maps degraded to bg-warning', () => {
-    render(<StatusDot status="degraded" data-testid="dot" />)
+  it('dot: warning color', () => {
+    render(<StatusDot variant="dot" color="warning" data-testid="dot" />)
     expect(screen.getByTestId('dot').className).toContain('bg-warning')
   })
 
-  it('maps warning to bg-warning', () => {
-    render(<StatusDot status="warning" data-testid="dot" />)
-    expect(screen.getByTestId('dot').className).toContain('bg-warning')
-  })
-
-  it('maps info to bg-info', () => {
-    render(<StatusDot status="info" data-testid="dot" />)
+  it('dot: info color', () => {
+    render(<StatusDot variant="dot" color="info" data-testid="dot" />)
     expect(screen.getByTestId('dot').className).toContain('bg-info')
   })
 
-  it('adds animate-pulse when pulse is true', () => {
-    render(<StatusDot status="online" pulse data-testid="dot" />)
-    expect(screen.getByTestId('dot').className).toContain('animate-pulse')
+  it('dot: success color', () => {
+    render(<StatusDot variant="dot" color="success" data-testid="dot" />)
+    expect(screen.getByTestId('dot').className).toContain('bg-success')
   })
 
-  it('does not add animate-pulse by default', () => {
-    render(<StatusDot status="online" data-testid="dot" />)
-    expect(screen.getByTestId('dot').className).not.toContain('animate-pulse')
+  // ── Standard variant ──────────────────────────────────────────────────────
+
+  it('standard: renders children text', () => {
+    render(<StatusDot variant="standard">Online</StatusDot>)
+    expect(screen.getByText('Online')).toBeInTheDocument()
   })
 
-  it('uses size-2 by default', () => {
-    render(<StatusDot status="online" data-testid="dot" />)
-    expect(screen.getByTestId('dot').className).toContain('size-2')
-    expect(screen.getByTestId('dot').className).not.toContain('size-2.5')
+  it('standard: applies pill shape classes', () => {
+    render(
+      <StatusDot variant="standard" data-testid="badge">
+        Online
+      </StatusDot>
+    )
+    const el = screen.getByTestId('badge')
+    expect(el.className).toContain('h-[14px]')
+    expect(el.className).toContain('px-[6.5px]')
+    expect(el.className).toContain('rounded-[64px]')
   })
 
-  it('uses size-2.5 when size="md"', () => {
-    render(<StatusDot status="online" size="md" data-testid="dot" />)
-    expect(screen.getByTestId('dot').className).toContain('size-2.5')
+  it('standard: applies typography token', () => {
+    render(
+      <StatusDot variant="standard" data-testid="badge">
+        Online
+      </StatusDot>
+    )
+    expect(screen.getByTestId('badge').className).toContain('text-sm-1x-component-reg400')
   })
 
-  it('sets aria-hidden="true"', () => {
-    render(<StatusDot status="online" data-testid="dot" />)
-    expect(screen.getByTestId('dot')).toHaveAttribute('aria-hidden', 'true')
+  it('standard: applies whitespace-nowrap', () => {
+    render(
+      <StatusDot variant="standard" data-testid="badge">
+        Online
+      </StatusDot>
+    )
+    expect(screen.getByTestId('badge').className).toContain('whitespace-nowrap')
+  })
+
+  it('standard: default color has no background', () => {
+    render(
+      <StatusDot variant="standard" color="default" data-testid="badge">
+        Default
+      </StatusDot>
+    )
+    const badge = screen.getByTestId('badge')
+    ;[
+      'bg-primary',
+      'bg-secondary',
+      'bg-error',
+      'bg-warning',
+      'bg-info',
+      'bg-success',
+      'bg-text-secondary',
+    ].forEach((cls) => expect(badge).not.toHaveClass(cls))
+  })
+
+  it('standard: is not aria-hidden', () => {
+    render(
+      <StatusDot variant="standard" data-testid="badge">
+        Online
+      </StatusDot>
+    )
+    expect(screen.getByTestId('badge')).not.toHaveAttribute('aria-hidden')
+  })
+
+  it('standard: default color uses text-text-primary', () => {
+    render(
+      <StatusDot variant="standard" color="default" data-testid="badge">
+        Default
+      </StatusDot>
+    )
+    expect(screen.getByTestId('badge').className).toContain('text-text-primary')
+  })
+
+  it('standard: success color applies bg and foreground text', () => {
+    render(
+      <StatusDot variant="standard" color="success" data-testid="badge">
+        Online
+      </StatusDot>
+    )
+    const cls = screen.getByTestId('badge').className
+    expect(cls).toContain('bg-success')
+    expect(cls).toContain('text-success-foreground')
+  })
+
+  it('standard: error color', () => {
+    render(
+      <StatusDot variant="standard" color="error" data-testid="badge">
+        Error
+      </StatusDot>
+    )
+    const cls = screen.getByTestId('badge').className
+    expect(cls).toContain('bg-error')
+    expect(cls).toContain('text-error-foreground')
+  })
+
+  it('standard: warning color', () => {
+    render(
+      <StatusDot variant="standard" color="warning" data-testid="badge">
+        Warning
+      </StatusDot>
+    )
+    expect(screen.getByTestId('badge').className).toContain('bg-warning')
+  })
+
+  it('standard: info color', () => {
+    render(
+      <StatusDot variant="standard" color="info" data-testid="badge">
+        Info
+      </StatusDot>
+    )
+    expect(screen.getByTestId('badge').className).toContain('bg-info')
+  })
+
+  it('standard: primary color', () => {
+    render(
+      <StatusDot variant="standard" color="primary" data-testid="badge">
+        Primary
+      </StatusDot>
+    )
+    expect(screen.getByTestId('badge').className).toContain('bg-primary')
+  })
+
+  it('standard: secondary color', () => {
+    render(
+      <StatusDot variant="standard" color="secondary" data-testid="badge">
+        Secondary
+      </StatusDot>
+    )
+    expect(screen.getByTestId('badge').className).toContain('bg-secondary')
   })
 })

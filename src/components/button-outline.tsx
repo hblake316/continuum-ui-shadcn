@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
+import { MdRefresh } from 'react-icons/md'
+
 import { cn } from '../lib/utils'
 
 const buttonOutlineVariants = cva(
@@ -20,9 +22,9 @@ const buttonOutlineVariants = cva(
           'focus-visible:border-2 focus-visible:bg-background-paper focus-visible:border-primary focus-visible:text-primary',
         ],
         secondary: [
-          'bg-background-paper text-action-dark border-action-main',
-          'hover:bg-action-states-hover hover:border-components-outlineBorder',
-          'focus-visible:bg-action-states-focus focus-visible:border-components-outlineBorder focus-visible:text-action-main',
+          'bg-background-paper text-action-dark border-action',
+          'hover:bg-action-hover-subtle hover:border-outline-border',
+          'focus-visible:bg-action-focus focus-visible:border-outline-border focus-visible:text-action-dark',
         ],
       },
       size: {
@@ -48,28 +50,51 @@ const iconSizeMap: Record<NonNullable<ButtonOutlineProps['size']>, string> = {
 
 export interface ButtonOutlineProps
   extends
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,
     VariantProps<typeof buttonOutlineVariants> {
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
+  loading?: boolean
 }
 
 export const ButtonOutline = React.forwardRef<HTMLButtonElement, ButtonOutlineProps>(
-  ({ className, variant, size, leftIcon, rightIcon, children, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      loading = false,
+      disabled = false,
+      type = 'button',
+      leftIcon,
+      rightIcon,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     const iconClass = iconSizeMap[size ?? 'md']
+    const isDisabled = disabled || loading
     return (
       <button
         ref={ref}
+        type={type}
+        disabled={isDisabled}
+        aria-busy={loading || undefined}
         className={cn(buttonOutlineVariants({ variant, size }), className)}
         {...props}
       >
-        {leftIcon && (
-          <span className={cn('shrink-0 flex items-center justify-center', iconClass)}>
-            {leftIcon}
-          </span>
+        {loading ? (
+          <MdRefresh size={16} className="shrink-0 animate-spin" aria-hidden />
+        ) : (
+          leftIcon && (
+            <span className={cn('shrink-0 flex items-center justify-center', iconClass)}>
+              {leftIcon}
+            </span>
+          )
         )}
         {children}
-        {rightIcon && (
+        {!loading && rightIcon && (
           <span className={cn('shrink-0 flex items-center justify-center', iconClass)}>
             {rightIcon}
           </span>

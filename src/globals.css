@@ -108,6 +108,43 @@
 
     /* Brand */
     --color-brand-black-pearl: #01111f;
+
+    /* Header environment gradient color stops (start=dark, mid=mid, end=light/paper) */
+    --color-header-dev-start: #089d76;
+    --color-header-dev-mid: #86ebd0;
+    --color-header-staging-start: #c89807;
+    --color-header-staging-mid: #ffdf81;
+    --color-header-test-start: #8e4503;
+    --color-header-test-mid: #e1af83;
+    --color-header-prod-start: #0d3a8e;
+    --color-header-prod-mid: #658fdf;
+
+    /* Header environment gradients */
+    --gradient-header-default: linear-gradient(to right, #142c6d, #bbc9e8);
+    --gradient-header-dev: linear-gradient(
+      to right,
+      var(--color-header-dev-start),
+      var(--color-header-dev-mid) 32%,
+      var(--color-background-paper)
+    );
+    --gradient-header-staging: linear-gradient(
+      to right,
+      var(--color-header-staging-start),
+      var(--color-header-staging-mid) 35%,
+      var(--color-background-paper)
+    );
+    --gradient-header-test: linear-gradient(
+      to right,
+      var(--color-header-test-start),
+      var(--color-header-test-mid) 33%,
+      var(--color-background-paper) 78%
+    );
+    --gradient-header-production: linear-gradient(
+      to right,
+      var(--color-header-prod-start),
+      var(--color-header-prod-mid) 32%,
+      var(--color-background-paper)
+    );
   }
 
   .dark {

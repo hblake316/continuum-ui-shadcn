@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react'
 import { MdCheck, MdClose, MdDeleteOutline } from 'react-icons/md'
 
-import { Button } from './button'
+import { ButtonDefault } from './button-default'
 import { ButtonOutline } from './button-outline'
 import { CircularProgress } from './progress'
 import { Dialog, DialogContent, DialogHeader, DialogBody, DialogFooter } from './dialog'
@@ -122,14 +122,10 @@ function FormDialog({
             {cancelIcon}
             {cancelLabel}
           </ButtonOutline>
-          <Button
-            variant="primary"
-            onClick={onConfirm}
-            disabled={loading || confirmDisabled}
-          >
+          <ButtonDefault onClick={onConfirm} disabled={loading || confirmDisabled}>
             {loading ? <CircularProgress size={16} /> : resolvedConfirmIcon}
             {confirmLabel}
-          </Button>
+          </ButtonDefault>
         </DialogFooter>
       </DialogContent>
     </Dialog>

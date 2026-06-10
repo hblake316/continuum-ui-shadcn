@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { FormDialog } from './form-dialog'
-import { Button } from './button'
+import { ButtonDefault } from './button-default'
 import { TextField } from './text-field'
 
 const meta: Meta<typeof FormDialog> = {
@@ -41,7 +41,7 @@ function DialogDemo(props: {
   const [open, setOpen] = useState(false)
   return (
     <>
-      <Button onClick={() => setOpen(true)}>{props.label}</Button>
+      <ButtonDefault onClick={() => setOpen(true)}>{props.label}</ButtonDefault>
       <FormDialog
         {...props.dialogProps}
         open={open}
@@ -151,7 +151,7 @@ export const Interactive: Story = {
 
     return (
       <>
-        <Button onClick={() => setOpen(true)}>Open interactive demo</Button>
+        <ButtonDefault onClick={() => setOpen(true)}>Open interactive demo</ButtonDefault>
         <FormDialog
           open={open}
           title="Add new environment"

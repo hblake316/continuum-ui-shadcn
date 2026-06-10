@@ -152,7 +152,6 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
               {options.map((opt) => (
                 <Checkbox
                   key={opt.value}
-                  size="sm"
                   checked={selectedSet.has(opt.value)}
                   onCheckedChange={() => toggle(opt.value)}
                   label={opt.label}

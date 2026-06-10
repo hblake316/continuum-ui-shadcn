@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { MdMoreVert } from 'react-icons/md'
 
 import { Avatar } from './avatar'
-import { Button } from './button'
+import { ButtonDefault } from './button-default'
 import { Card, CardContent, CardFooter, CardHeader } from './card'
-import { IconButton } from './icon-button'
+import { ButtonDefaultIcon } from './button-default-icon'
 
 const meta: Meta<typeof Card> = {
   title: 'Components/Card',
@@ -53,8 +53,8 @@ export const WithFooter: Story = {
         </p>
       </CardContent>
       <CardFooter>
-        <Button variant="text">Cancel</Button>
-        <Button color="error">Archive</Button>
+        <ButtonDefault variant="secondary">Cancel</ButtonDefault>
+        <ButtonDefault>Archive</ButtonDefault>
       </CardFooter>
     </Card>
   ),
@@ -68,9 +68,9 @@ export const WithAvatarAndAction: Story = {
         subtitle="heather.blake@continuous.com"
         avatar={<Avatar initials="HB" />}
         action={
-          <IconButton variant="text" color="action" size="sm" aria-label="More">
+          <ButtonDefaultIcon color="secondary" size="sm" aria-label="More">
             <MdMoreVert size={16} />
-          </IconButton>
+          </ButtonDefaultIcon>
         }
       />
       <CardContent>

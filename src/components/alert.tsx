@@ -1,143 +1,145 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
+import {
+  MdCheck,
+  MdClose,
+  MdErrorOutline,
+  MdWarningAmber,
+  MdInfoOutline,
+  MdCheckCircleOutline,
+} from 'react-icons/md'
 
 import { cn } from '../lib/utils'
 
-/**
- * Alert derived from Figma component:
- *   - Alert (node 6595:48177)
- *
- * Feedback banner with severity icon, title, description, and optional action.
- *   severity: error | warning | info | success
- *   variant:  standard (light bg) | filled (dark bg)
- *
- * Figma tokens:
- *   standard: colored border-left, light alert-bg, dark alert-content text
- *   filled: solid color bg, white text
- */
-
-function ErrorIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={cn('size-5 shrink-0', className)}>
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
-    </svg>
-  )
-}
-
-function WarningIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={cn('size-5 shrink-0', className)}>
-      <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
-    </svg>
-  )
-}
-
-function InfoIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={cn('size-5 shrink-0', className)}>
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-    </svg>
-  )
-}
-
-function SuccessIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={cn('size-5 shrink-0', className)}>
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-    </svg>
-  )
-}
-
-const severityIcons = {
-  error: ErrorIcon,
-  warning: WarningIcon,
-  info: InfoIcon,
-  success: SuccessIcon,
-}
-
-const alertVariants = cva('flex items-start gap-3 rounded p-4 font-sans', {
-  variants: {
-    severity: {
-      error: '',
-      warning: '',
-      info: '',
-      success: '',
-    },
-    variant: {
-      standard: 'border-l-4',
-      filled: '',
-    },
-  },
-  compoundVariants: [
-    // Standard (light bg, colored left border)
-    {
-      variant: 'standard',
-      severity: 'error',
-      className: 'bg-error-hover-subtle border-l-error text-error-alert-content',
-    },
-    {
-      variant: 'standard',
-      severity: 'warning',
-      className: 'bg-warning-alert-bg border-l-warning text-warning-alert-content',
-    },
-    {
-      variant: 'standard',
-      severity: 'info',
-      className: 'bg-info-hover-subtle border-l-info text-info-alert-content',
-    },
-    {
-      variant: 'standard',
-      severity: 'success',
-      className: 'bg-success-alert-bg border-l-success text-success-alert-content',
-    },
-
-    // Filled (solid color bg, white text)
-    { variant: 'filled', severity: 'error', className: 'bg-error text-error-foreground' },
-    {
-      variant: 'filled',
-      severity: 'warning',
-      className: 'bg-warning-dark text-warning-foreground',
-    },
-    { variant: 'filled', severity: 'info', className: 'bg-info text-info-foreground' },
-    { variant: 'filled', severity: 'success', className: 'bg-success text-success-foreground' },
+const alertVariants = cva(
+  [
+    'relative flex items-start gap-1.5 w-full rounded border border-solid px-2 py-2',
+    'text-sm-1x-label-med500',
+    'has-data-[slot=alert-action]:pr-1',
   ],
-  defaultVariants: {
-    severity: 'info',
-    variant: 'standard',
-  },
-})
-
-interface AlertProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>, VariantProps<typeof alertVariants> {
-  title?: React.ReactNode
-  action?: React.ReactNode
-  icon?: React.ReactNode
-}
-
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
-  ({ className, severity = 'info', variant, title, action, icon, children, ...props }, ref) => {
-    const Icon = severityIcons[severity!]
-
-    return (
-      <div
-        ref={ref}
-        role="alert"
-        className={cn(alertVariants({ severity, variant, className }))}
-        {...props}
-      >
-        {icon ?? <Icon />}
-
-        <div className="flex-1 min-w-0">
-          {title && <p className="font-medium text-base leading-[21.6px]">{title}</p>}
-          {children && <p className="text-sm leading-[17.55px] mt-0.5">{children}</p>}
-        </div>
-
-        {action && <div className="shrink-0 self-center">{action}</div>}
-      </div>
-    )
+  {
+    variants: {
+      severity: {
+        basic: [
+          'bg-background-paper border-outline-border text-text-primary',
+          '[&_[data-slot=alert-description]]:text-text-secondary',
+        ],
+        error: 'bg-error-alert-bg border-error text-error-alert-content',
+        warning: 'bg-warning-alert-bg border-warning text-warning-alert-content',
+        info: 'bg-info-alert-bg border-info text-info-alert-content',
+        success: 'bg-success-alert-bg border-success text-success-alert-content',
+      },
+    },
+    defaultVariants: {
+      severity: 'basic',
+    },
   }
 )
-Alert.displayName = 'Alert'
 
-export { Alert, alertVariants }
-export type { AlertProps }
+const severityIconMap: Record<string, React.ReactNode> = {
+  basic: <MdCheck className="size-[18px] shrink-0" />,
+  error: <MdErrorOutline className="size-[18px] shrink-0" />,
+  warning: <MdWarningAmber className="size-[18px] shrink-0" />,
+  info: <MdInfoOutline className="size-[18px] shrink-0" />,
+  success: <MdCheckCircleOutline className="size-[18px] shrink-0" />,
+}
+
+const severityIconColorMap: Record<string, string> = {
+  basic: 'text-text-secondary',
+  error: 'text-error',
+  warning: 'text-warning',
+  info: 'text-info',
+  success: 'text-success',
+}
+
+function AlertTitle({ className, ...props }: React.ComponentProps<'div'>) {
+  return (
+    <div data-slot="alert-title" className={cn('text-sm-1x-label-med500', className)} {...props} />
+  )
+}
+
+function AlertDescription({ className, ...props }: React.ComponentProps<'div'>) {
+  return (
+    <div
+      data-slot="alert-description"
+      className={cn('text-sm-1x-component-reg400', className)}
+      {...props}
+    />
+  )
+}
+
+function AlertAction({ className, ...props }: React.ComponentProps<'div'>) {
+  return (
+    <div data-slot="alert-action" className={cn('shrink-0 self-start', className)} {...props} />
+  )
+}
+
+function Alert({
+  className,
+  severity = 'basic',
+  startIcon = true,
+  title,
+  action,
+  onClose,
+  children,
+  ...props
+}: Omit<React.ComponentProps<'div'>, 'title'> &
+  Omit<VariantProps<typeof alertVariants>, 'severity'> & {
+    severity?: 'basic' | 'error' | 'warning' | 'info' | 'success'
+    startIcon?: boolean
+    title?: React.ReactNode
+    action?: React.ReactNode
+    onClose?: () => void
+  }) {
+  const childArray = React.Children.toArray(children)
+  const actionChildren = childArray.filter(
+    (child) => React.isValidElement(child) && child.type === AlertAction
+  )
+  const contentChildren = childArray.filter(
+    (child) => !React.isValidElement(child) || child.type !== AlertAction
+  )
+
+  const resolvedAction =
+    actionChildren.length > 0 ? (
+      actionChildren
+    ) : action ? (
+      <AlertAction>{action}</AlertAction>
+    ) : onClose ? (
+      <AlertAction>
+        <button
+          type="button"
+          aria-label="Close"
+          onClick={onClose}
+          className={cn(
+            'flex items-center justify-center size-[16px] rounded',
+            'border border-outline-border bg-background-paper text-text-secondary',
+            'hover:bg-action-hover-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary'
+          )}
+        >
+          <MdClose className="size-[12px]" />
+        </button>
+      </AlertAction>
+    ) : null
+
+  return (
+    <div
+      data-slot="alert"
+      role={severity === 'error' || severity === 'warning' ? 'alert' : 'status'}
+      className={cn(alertVariants({ severity }), className)}
+      {...props}
+    >
+      {startIcon && (
+        <span className={cn('flex items-start shrink-0 pt-[1px]', severityIconColorMap[severity])}>
+          {severityIconMap[severity]}
+        </span>
+      )}
+      <div className="flex flex-1 min-w-0 flex-col gap-0 overflow-hidden">
+        {title && <AlertTitle>{title}</AlertTitle>}
+        {contentChildren}
+      </div>
+      {resolvedAction}
+    </div>
+  )
+}
+
+export { Alert, AlertTitle, AlertDescription, AlertAction }
